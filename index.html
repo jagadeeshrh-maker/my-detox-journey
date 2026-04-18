@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detox Meal Plan App</title>
+    <style>
+        :root { --primary: #2e7d32; --bg: #f1f8e9; }
+        body { font-family: sans-serif; background: var(--bg); padding: 20px; color: #333; }
+        .card { background: white; padding: 20px; border-radius: 12px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); max-width: 600px; margin: auto; }
+        h1, h2 { color: var(--primary); text-align: center; }
+        
+        .meal-slot { 
+            display: flex; 
+            align-items: center; 
+            padding: 12px; 
+            border-bottom: 1px solid #eee; 
+        }
+        
+        /* Checkbox styling */
+        .check-box {
+            width: 20px;
+            height: 20px;
+            margin-right: 15px;
+            cursor: pointer;
+            accent-color: var(--primary);
+        }
+
+        .time { font-weight: bold; color: #666; min-width: 85px; }
+        .meal-name { flex: 1; padding-left: 10px; transition: color 0.3s; }
+        
+        /* Strike through text when checkbox is checked */
+        .check-box:checked + .time + .meal-name {
+            text-decoration: line-through;
+            color: #999;
+        }
+
+        .points { background: #fffde7; padding: 15px; border-radius: 8px; margin-top: 20px; font-size: 0.9em; }
+        ul { padding-left: 20px; }
+        
+        .reset-btn {
+            background: #d32f2f;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 6px;
+            font-size: 1em;
+            cursor: pointer;
+            margin-top: 20px;
+            transition: background 0.3s;
+        }
+        
+        .reset-btn:hover {
+            background: #b71c1c;
+        }
+        
+        .tabs {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+            border-bottom: 2px solid #eee;
+        }
+        
+        .tab-btn {
+            background: none;
+            border: none;
+            padding: 12px 20px;
+            font-size: 1em;
+            color: #666;
+            cursor: pointer;
+            border-bottom: 3px solid transparent;
+            transition: all 0.3s;
+        }
+        
+        .tab-btn.active {
+            color: var(--primary);
+            border-bottom-color: var(--primary);
+        }
+        
+        .tab-btn:hover {
+            color: var(--primary);
+        }
+        
+        .tab-content {
+            display: none;
+        }
+        
+        .tab-content.active {
+            display: block;
+        }
+        
+        /* Medicine table styling */
+        .medicine-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 10px;
+        }
+        
+        .medicine-table thead {
+            background: var(--primary);
+            color: white;
+        }
+        
+        .medicine-table th {
+            padding: 12px;
+            text-align: left;
+            font-weight: bold;
+        }
+        
+        .medicine-table td {
+            padding: 12px;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .medicine-table tbody tr:hover {
+            background: #f5f5f5;
+        }
+        
+        .timing-badge {
+            display: inline-block;
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 0.85em;
+            font-weight: bold;
+        }
+        
+        .before-food {
+            background: #e3f2fd;
+            color: #1976d2;
+        }
+        
+        .after-food {
+            background: #f3e5f5;
+            color: #7b1fa2;
+        }
+        
+        .date-display {
+            text-align: center;
+            color: #666;
+            font-size: 0.95em;
+            margin-bottom: 15px;
+            font-weight: 500;
+        }
+        
+        /* Image Gallery Styling */
+        .image-gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        .gallery-item {
+            overflow: hidden;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            background: #f5f5f5;
+        }
+        
+        .gallery-item img {
+            width: 100%;
+            height: auto;
+            display: block;
+            object-fit: cover;
+        }
+        
+        /* Mobile/iPhone Optimization */
+        @media (max-width: 428px) {
+            body { padding: 12px; }
+            .card { padding: 16px; }
+            h1 { font-size: 1.5em; margin: 10px 0; }
+            h2 { font-size: 1.2em; margin: 12px 0; }
+            
+            .meal-slot { 
+                padding: 10px 8px;
+                flex-wrap: wrap;
+            }
+            
+            .check-box {
+                width: 18px;
+                height: 18px;
+                margin-right: 12px;
+                min-width: 18px;
+            }
+            
+            .time { min-width: 70px; font-size: 0.9em; }
+            .meal-name { font-size: 0.95em; padding-left: 8px; }
+            
+            .reset-btn {
+                width: 100%;
+                padding: 12px;
+                font-size: 1em;
+            }
+            
+            .tabs {
+                gap: 0;
+                flex-wrap: wrap;
+            }
+            
+            .tab-btn {
+                flex: 1;
+                padding: 10px 12px;
+                font-size: 0.95em;
+                min-height: 44px;
+            }
+            
+            .points { 
+                padding: 12px; 
+                font-size: 0.85em;
+                margin-top: 15px;
+            }
+            
+            ul { padding-left: 18px; }
+            
+            .medicine-table {
+                font-size: 0.9em;
+            }
+            
+            .medicine-table th {
+                padding: 10px 6px;
+                font-size: 0.85em;
+            }
+            
+            .medicine-table td {
+                padding: 10px 6px;
+                word-wrap: break-word;
+                word-break: break-word;
+            }
+            
+            .date-display {
+                font-size: 0.9em;
+                margin-bottom: 12px;
+            }
+            
+            .image-gallery {
+                grid-template-columns: 1fr;
+                gap: 12px;
+            }
+            
+            .gallery-item {
+                border-radius: 6px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div class="card">
+    <h1>Detox Plan</h1>
+    <div class="date-display" id="dateDisplay"></div>
+    
+    <div class="tabs">
+        <button class="tab-btn active" data-tab="diet">Diet Plan</button>
+        <button class="tab-btn" data-tab="medicine">Medicine</button>
+        <button class="tab-btn" data-tab="exercises">Exercises</button>
+    </div>
+    
+    <!-- Diet Plan Tab -->
+    <div id="diet" class="tab-content active">
+        <h2 id="currentDay">Today's Schedule</h2>
+        <div id="schedule"></div>
+
+        <div class="points">
+            <strong>💡 Points to Remember:</strong>
+            <ul>
+                <li>Avoid all dairy and non-veg.</li>
+                <li>Drink min 2.5L of water daily.</li>
+                <li>Finish dinner before 7:30 PM.</li>
+                <li>Take Bath before sleep.</li>
+                <li>Take foot massage before sleep.</li>
+            </ul>
+        </div>
+        
+        <button id="resetBtn" class="reset-btn">Reset All</button>
+    </div>
+    
+    <!-- Medicine Plan Tab -->
+    <div id="medicine" class="tab-content">
+        <h2>Medicine</h2>
+        <table class="medicine-table">
+            <thead>
+                <tr>
+                    <th>Timing</th>
+                    <th>When to Take</th>
+                    <th>Male</th>
+                    <th>Female</th>
+                </tr>
+            </thead>
+            <tbody id="medicineTable">
+            </tbody>
+        </table>
+        <button id="resetMedicineBtn" class="reset-btn">Reset All</button>
+    </div>
+    
+    <!-- Exercises Tab -->
+    <div id="exercises" class="tab-content">
+        <h2>Exercises</h2>
+        <div class="image-gallery">
+            <div class="gallery-item">
+                <img src="image_1.png" alt="Exercise 1">
+            </div>
+            <div class="gallery-item">
+                <img src="image_2.png" alt="Exercise 2">
+            </div>
+            <div class="gallery-item">
+                <img src="image_3.png" alt="Exercise 3">
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    // Display today's date
+    const today = new Date();
+    const dateOptions = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+    const dateString = today.toLocaleDateString('en-US', dateOptions);
+    document.getElementById('dateDisplay').textContent = dateString;
+    
+    // Medicine Plan Data
+    const medicineData = [
+        { timing: "9:00 AM", when: "Before Breakfast", male: "Ashta Choornam (5gms) HW", female: "Ashta Choornam (5gms) HW" },
+        { timing: "9:30 AM", when: "After Breakfast", male: "Ayurslim Capsules (2 no.) & Ayaskrithi 25ml", female: "Sudarshanam Tab (2 no.) <br> Kumaryasava (25ml)" },
+        { timing: "1:30 PM", when: "Before Lunch", male: "NA", female: "NA" },
+        { timing: "2:00 PM", when: "After Lunch", male: "NA", female: "NA" },
+        { timing: "4:00 PM", when: "Before Evening", male: "NA", female: "NA" },
+        { timing: "7:30 PM", when: "Before Dinner", male: "Ashta Choornam (5gms) HW", female: " Ashta Chooranm (5gms) & Herbolax Capsules (3 no.)" },
+        { timing: "8:00 PM", when: "After Dinner", male: "Ayurslim Capsules (2 no.) & Ayaskrithi 25ml", female: "Sudarshanam Tablet (2 no.) & Kumaryasava (25ml)" },
+        { timing: "9:30 PM", when: "Before Bedtime", male: "Anulom DS Tablet (2 no.)", female: "NA" }
+    ];
+
+    const dietData = {
+        "Monday": { "Wake-up": "Ash gourd/bottle gourd juice (300ml)", "Breakfast": "Vegetable poha - 1 medium bowl (add 50% veggies)", "Fruit": "Any Seasonal Fruit - 1 or 2 serving", "Lunch": "Rice roti (2 no.) + bitter gourd sabzi (1 medium bowl) + moong dal (1 small bowl)", "Evening": "Tender Coconut with malai (1 glass)", "Dinner": "Tomato soup (1 medium bowl) + Makhana chaat (1 plate)", "Bedtime": "Cinnamon water" },
+        "Tuesday": { "Wake-up": "Ginger & mint water (boil 1 inch ginger & 3-4 mint leaves)", "Breakfast": "Neer Dosa (2 no.) with veg in batter + Coconut mint/Tomato chutney", "Fruit": "Any Seasonal Fruit - 1 or 2 serving", "Lunch": "Moong sprouts and Vegetable Curry with Brown Rice (1 small bowl) + cucumber salad", "Evening": "Rajgira flakes (2 fist full) + Green/peppermint tea", "Dinner": "Steamed vegetables (1 big bowl) using olive oil", "Bedtime": "Bayleaf water" },
+        "Wednesday": { "Wake-up": "Lemon-Ginger water", "Breakfast": "Green moong dosa (2 no.) + Tomato chutney (2 tsp)", "Fruit": "Any Seasonal Fruit - 1 or 2 serving", "Lunch": "Parboiled rice and yellow moong khichdi + Buttermilk (add ½ tsp jeera powder)", "Evening": "Roasted chana (1 fist) + Green/peppermint tea", "Dinner": "Pumpkin soup (1 big bowl)", "Bedtime": "Chamomile tea Or Star anise water" },
+        "Thursday": { "Wake-up": "Tulsi Water (boil 4-5 leaves, strain)", "Breakfast": "Oats dosa with veggies on top + mint chutney", "Fruit": "Any Seasonal Fruit - 1 or 2 serving", "Lunch": "Rice roti/bhakri (2 no.) + bottle gourd/beetroot sabzi + moong dal (1 small bowl)", "Evening": "Roasted makhana + Green/peppermint tea", "Dinner": "Sauteed mushroom and baby corn (250g) with seasonal green leafy vegetables", "Bedtime": "Cinnamon water" },
+        "Friday": { "Wake-up": "Ash gourd/bottle gourd juice (300ml - drink without straining)", "Breakfast": "Banana and coconut milk smoothie (300ml)", "Fruit": "Any Seasonal Fruit - 1 or 2 serving", "Lunch": "Kerala Rice (1 medium bowl) + Lauki sabzi + buttermilk (add pinch of hing)", "Evening": "Coconut water + malai (1 glass)", "Dinner": "Drumstick/Carrot soup (1 medium bowl) + steamed green moong (1 medium bowl)", "Bedtime": "Chamomile tea Or Star anise water" },
+        "Saturday": { "Wake-up": "Lemon-Ginger water", "Breakfast": "Steamed sweet potato chaat (1 medium bowl)", "Fruit": "Any Seasonal Fruit - 1 or 2 serving", "Lunch": "Rice roti (2 no.) + mix veg sabzi (1 medium bowl) + Buttermilk (add ½ tsp jeera powder)", "Evening": "Coconut water with malai / Green tea / peppermint tea", "Dinner": "Moong dal chilla (2 no.) + mint chutney", "Bedtime": "Bayleaf water" },
+        "Sunday": { "Wake-up": "Tulsi Water (boil 4-5 leaves, strain)", "Breakfast": "Rice ganji (add pinch of cinnamon) OR Vegetable red rice poha", "Fruit": "Any Seasonal Fruit - 1 or 2 serving", "Lunch": "Vegetable pulao (1 medium bowl) + buttermilk (add pinch of hing)", "Evening": "Tomato chaat (1 medium bowl)", "Dinner": "Moong dal and beetroot tikki (4 no.) + sauteed veggies", "Bedtime": "Chamomile tea Or Star anise water" }
+    };
+
+    const day = new Intl.DateTimeFormat('en-US', { weekday: 'long' }).format(new Date());
+    document.getElementById('currentDay').innerText = "Today: " + day;
+
+    const scheduleDiv = document.getElementById('schedule');
+    const todayMeals = dietData[day] || dietData["Monday"];
+
+    const times = { "9:00 AM": "Wake-up", "9:30 AM": "Breakfast", "11:00 AM": "Fruit", "1:30 PM": "Lunch", "4:00 PM": "Evening", "7:30 PM": "Dinner", "9:30 PM": "Bedtime" };
+
+    for (const [time, key] of Object.entries(times)) {
+        scheduleDiv.innerHTML += `
+            <div class="meal-slot">
+                <input type="checkbox" class="check-box">
+                <span class="time">${time}</span>
+                <span class="meal-name">${todayMeals[key]}</span>
+            </div>`;
+    }
+    
+    // Populate Medicine Table
+    const medicineTableDiv = document.getElementById('medicineTable');
+    medicineData.forEach((medicine, index) => {
+        medicineTableDiv.innerHTML += `
+            <tr>
+                <td>${medicine.timing}</td>
+                <td>${medicine.when}</td>
+                <td><input type="checkbox" class="medicine-check" data-index="${index}"> ${medicine.male}</td>
+                <td><input type="checkbox" class="medicine-check" data-index="${index}"> ${medicine.female}</td>
+            </tr>`;
+    });
+    
+    // Tab switching
+    document.querySelectorAll('.tab-btn').forEach(btn => {
+        btn.addEventListener('click', function() {
+            const tabName = this.getAttribute('data-tab');
+            
+            // Remove active class from all tabs and contents
+            document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+            document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+            
+            // Add active class to clicked tab and corresponding content
+            this.classList.add('active');
+            document.getElementById(tabName).classList.add('active');
+        });
+    });
+    
+    // Reset Diet Plan button functionality
+    document.getElementById('resetBtn').addEventListener('click', function() {
+        const checkboxes = document.querySelectorAll('#diet .check-box');
+        checkboxes.forEach(checkbox => checkbox.checked = false);
+    });
+    
+    // Reset Medicine Plan button functionality
+    document.getElementById('resetMedicineBtn').addEventListener('click', function() {
+        const checkboxes = document.querySelectorAll('#medicine .medicine-check');
+        checkboxes.forEach(checkbox => checkbox.checked = false);
+    });
+</script>
+</body>
+</html>
+
