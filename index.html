@@ -310,11 +310,17 @@
 </div>
 
 <script>
-    // Display today's date
-    const today = new Date();
-    const dateOptions = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
-    const dateString = today.toLocaleDateString('en-US', dateOptions);
-    document.getElementById('dateDisplay').textContent = dateString;
+    // Display today's date and time
+    function updateDateTime() {
+        const today = new Date();
+        const dateOptions = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+        const timeOptions = { hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: true };
+        const dateString = today.toLocaleDateString('en-US', dateOptions);
+        const timeString = today.toLocaleTimeString('en-US', timeOptions);
+        document.getElementById('dateDisplay').textContent = dateString + ' • ' + timeString;
+    }
+    updateDateTime();
+    setInterval(updateDateTime, 1000);
     
     // Medicine Plan Data
     const medicineData = [
