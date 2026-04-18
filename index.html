@@ -11,7 +11,8 @@
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
         :root { --primary: #2e7d32; --bg: #f5f5f5; --white: #ffffff; }
-        html, body { width: 100%; height: 100vh; overflow: hidden; -webkit-user-select: none; user-select: none; }
+        html { scroll-behavior: smooth; }
+        body { width: 100%; height: 100vh; overflow: hidden; -webkit-user-select: none; user-select: none; }
         body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: var(--bg); color: #333; display: flex; flex-direction: column; }
         
         .app-header {
@@ -27,6 +28,8 @@
             font-size: 1.5em;
             font-weight: 600;
             margin-bottom: 4px;
+            color: #00d4ff;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.2);
         }
         
         .app-header .date-display {
@@ -83,9 +86,11 @@
             font-weight: 600;
             cursor: pointer;
             margin: 16px;
+            margin-top: auto;
             transition: background 0.3s;
             -webkit-tap-highlight-color: transparent;
             touch-action: manipulation;
+            flex-shrink: 0;
         }
         
         .reset-btn:active {
@@ -163,11 +168,11 @@
             flex: 1;
             overflow-y: auto;
             -webkit-overflow-scrolling: touch;
+            flex-direction: column;
         }
         
         .sub-tab-content.active {
             display: flex;
-            flex-direction: column;
         }
         
         .tab-content {
