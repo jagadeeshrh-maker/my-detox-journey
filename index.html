@@ -2,32 +2,67 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <meta name="theme-color" content="#2e7d32">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="Detox Plan">
     <title>Detox Meal Plan App</title>
     <style>
-        :root { --primary: #2e7d32; --bg: #f1f8e9; }
-        body { font-family: sans-serif; background: var(--bg); padding: 20px; color: #333; }
-        .card { background: white; padding: 20px; border-radius: 12px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); max-width: 600px; margin: auto; }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        :root { --primary: #2e7d32; --bg: #f5f5f5; --white: #ffffff; }
+        html, body { width: 100%; height: 100vh; overflow: hidden; -webkit-user-select: none; user-select: none; }
+        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: var(--bg); color: #333; display: flex; flex-direction: column; }
+        
+        .app-header {
+            background: linear-gradient(135deg, var(--primary) 0%, #1b5e20 100%);
+            color: white;
+            padding: max(12px, env(safe-area-inset-top)) 16px 16px;
+            text-align: center;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+            flex-shrink: 0;
+        }
+        
+        .app-header h1 {
+            font-size: 1.5em;
+            font-weight: 600;
+            margin-bottom: 4px;
+        }
+        
+        .app-header .date-display {
+            color: rgba(255,255,255,0.9);
+            font-size: 0.85em;
+            margin: 0;
+        }
+        
+        .card { background: white; padding: 0; border-radius: 0; box-shadow: none; max-width: 100%; margin: 0; flex: 1; display: flex; flex-direction: column; overflow: hidden; }
         h1, h2 { color: var(--primary); text-align: center; }
         
         .meal-slot { 
             display: flex; 
             align-items: center; 
-            padding: 12px; 
-            border-bottom: 1px solid #eee; 
+            padding: 14px 16px; 
+            border-bottom: 1px solid #f0f0f0;
+            transition: background 0.2s;
+            -webkit-tap-highlight-color: transparent;
+        }
+        
+        .meal-slot:active {
+            background: #fafafa;
         }
         
         /* Checkbox styling */
         .check-box {
-            width: 20px;
-            height: 20px;
-            margin-right: 15px;
+            width: 24px;
+            height: 24px;
+            margin-right: 16px;
             cursor: pointer;
             accent-color: var(--primary);
+            flex-shrink: 0;
         }
 
-        .time { font-weight: bold; color: #666; min-width: 85px; }
-        .meal-name { flex: 1; padding-left: 10px; transition: color 0.3s; }
+        .time { font-weight: 600; color: #555; min-width: 80px; font-size: 0.95em; }
+        .meal-name { flex: 1; padding-left: 8px; transition: color 0.3s; font-size: 0.95em; }
         
         /* Strike through text when checkbox is checked */
         .check-box:checked + .time + .meal-name {
@@ -35,41 +70,50 @@
             color: #999;
         }
 
-        .points { background: #fffde7; padding: 15px; border-radius: 8px; margin-top: 20px; font-size: 0.9em; }
+        .points { background: #fffde7; padding: 16px; border-radius: 12px; margin: 16px; font-size: 0.9em; box-shadow: 0 2px 4px rgba(0,0,0,0.05); }
         ul { padding-left: 20px; }
         
         .reset-btn {
             background: #d32f2f;
             color: white;
             border: none;
-            padding: 10px 20px;
-            border-radius: 6px;
+            padding: 14px 24px;
+            border-radius: 8px;
             font-size: 1em;
+            font-weight: 600;
             cursor: pointer;
-            margin-top: 20px;
+            margin: 16px;
             transition: background 0.3s;
+            -webkit-tap-highlight-color: transparent;
+            touch-action: manipulation;
         }
         
-        .reset-btn:hover {
+        .reset-btn:active {
             background: #b71c1c;
+            transform: scale(0.98);
         }
         
         .tabs {
             display: flex;
-            gap: 10px;
-            margin-bottom: 20px;
-            border-bottom: 2px solid #eee;
+            gap: 0;
+            margin: 0;
+            border-bottom: 1px solid #e0e0e0;
+            flex-shrink: 0;
         }
         
         .tab-btn {
-            background: none;
+            background: transparent;
             border: none;
-            padding: 12px 20px;
-            font-size: 1em;
-            color: #666;
+            padding: 14px 0;
+            font-size: 0.95em;
+            font-weight: 500;
+            color: #999;
             cursor: pointer;
             border-bottom: 3px solid transparent;
             transition: all 0.3s;
+            flex: 1;
+            -webkit-tap-highlight-color: transparent;
+            touch-action: manipulation;
         }
         
         .tab-btn.active {
@@ -77,42 +121,100 @@
             border-bottom-color: var(--primary);
         }
         
-        .tab-btn:hover {
+        .tab-btn:active:not(.active) {
+            background: rgba(46, 125, 50, 0.05);
+        }
+        
+        /* Sub-tabs styling */
+        .sub-tabs {
+            display: flex;
+            gap: 0;
+            margin: 0;
+            border-bottom: 1px solid #e0e0e0;
+            background: #fafafa;
+            padding: 0 16px;
+        }
+        
+        .sub-tab-btn {
+            background: transparent;
+            border: none;
+            padding: 12px 16px;
+            font-size: 0.9em;
+            font-weight: 500;
+            color: #999;
+            cursor: pointer;
+            border-bottom: 3px solid transparent;
+            transition: all 0.3s;
+            -webkit-tap-highlight-color: transparent;
+            touch-action: manipulation;
+        }
+        
+        .sub-tab-btn.active {
             color: var(--primary);
+            border-bottom-color: var(--primary);
+        }
+        
+        .sub-tab-btn:active:not(.active) {
+            background: rgba(46, 125, 50, 0.05);
+        }
+        
+        .sub-tab-content {
+            display: none;
+            flex: 1;
+            overflow-y: auto;
+            -webkit-overflow-scrolling: touch;
+        }
+        
+        .sub-tab-content.active {
+            display: flex;
+            flex-direction: column;
         }
         
         .tab-content {
             display: none;
+            flex: 1;
+            overflow-y: auto;
+            -webkit-overflow-scrolling: touch;
+            flex-direction: column;
         }
         
         .tab-content.active {
-            display: block;
+            display: flex;
+            flex-direction: column;
         }
         
         /* Medicine table styling */
         .medicine-table {
             width: 100%;
             border-collapse: collapse;
-            margin-top: 10px;
+            margin: 0;
         }
         
         .medicine-table thead {
             background: var(--primary);
             color: white;
+            position: sticky;
+            top: 0;
         }
         
         .medicine-table th {
-            padding: 12px;
+            padding: 14px 12px;
             text-align: left;
-            font-weight: bold;
+            font-weight: 600;
+            font-size: 0.9em;
         }
         
         .medicine-table td {
-            padding: 12px;
-            border-bottom: 1px solid #eee;
+            padding: 14px 12px;
+            border-bottom: 1px solid #f0f0f0;
+            font-size: 0.9em;
         }
         
-        .medicine-table tbody tr:hover {
+        .medicine-table tbody tr {
+            transition: background 0.2s;
+        }
+        
+        .medicine-table tbody tr:active {
             background: #f5f5f5;
         }
         
@@ -134,26 +236,21 @@
             color: #7b1fa2;
         }
         
-        .date-display {
-            text-align: center;
-            color: #666;
-            font-size: 0.95em;
-            margin-bottom: 15px;
-            font-weight: 500;
-        }
-        
         /* Image Gallery Styling */
         .image-gallery {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 15px;
-            margin-top: 20px;
+            grid-template-columns: 1fr;
+            gap: 12px;
+            padding: 16px;
+            flex: 1;
+            overflow-y: auto;
+            -webkit-overflow-scrolling: touch;
         }
         
         .gallery-item {
             overflow: hidden;
-            border-radius: 8px;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            border-radius: 12px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
             background: #f5f5f5;
         }
         
@@ -164,91 +261,40 @@
             object-fit: cover;
         }
         
-        /* Mobile/iPhone Optimization */
-        @media (max-width: 428px) {
-            body { padding: 12px; }
-            .card { padding: 16px; }
-            h1 { font-size: 1.5em; margin: 10px 0; }
-            h2 { font-size: 1.2em; margin: 12px 0; }
-            
-            .meal-slot { 
-                padding: 10px 8px;
-                flex-wrap: wrap;
+        /* Desktop Optimization */
+        @media (min-width: 429px) {
+            .card { padding: 20px; border-radius: 12px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); max-width: 600px; margin: auto; }
+            html, body { overflow: auto; height: auto; }
+            .app-header {
+                padding: 16px;
+                border-radius: 12px;
+                margin: 20px;
+                margin-bottom: 0;
             }
-            
-            .check-box {
-                width: 18px;
-                height: 18px;
-                margin-right: 12px;
-                min-width: 18px;
-            }
-            
-            .time { min-width: 70px; font-size: 0.9em; }
-            .meal-name { font-size: 0.95em; padding-left: 8px; }
-            
-            .reset-btn {
-                width: 100%;
-                padding: 12px;
-                font-size: 1em;
-            }
-            
-            .tabs {
-                gap: 0;
-                flex-wrap: wrap;
-            }
-            
-            .tab-btn {
-                flex: 1;
-                padding: 10px 12px;
-                font-size: 0.95em;
-                min-height: 44px;
-            }
-            
-            .points { 
-                padding: 12px; 
-                font-size: 0.85em;
-                margin-top: 15px;
-            }
-            
-            ul { padding-left: 18px; }
-            
-            .medicine-table {
-                font-size: 0.9em;
-            }
-            
-            .medicine-table th {
-                padding: 10px 6px;
-                font-size: 0.85em;
-            }
-            
-            .medicine-table td {
-                padding: 10px 6px;
-                word-wrap: break-word;
-                word-break: break-word;
-            }
-            
-            .date-display {
-                font-size: 0.9em;
-                margin-bottom: 12px;
-            }
-            
-            .image-gallery {
-                grid-template-columns: 1fr;
-                gap: 12px;
-            }
-            
-            .gallery-item {
-                border-radius: 6px;
-            }
+            .tabs { border-bottom: 2px solid #eee; }
+            .tab-btn { padding: 12px 20px; }
+            .meal-slot { padding: 12px; }
+            .check-box { width: 20px; height: 20px; margin-right: 15px; }
+            .time { min-width: 85px; }
+            .meal-slot h2 { text-align: center; color: var(--primary); }
+            .points { margin: 20px 0; }
+            .reset-btn { margin-top: 20px; }
+            .image-gallery { grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px; padding: 20px; }
+            .gallery-item { border-radius: 8px; }
+            .app-header { background: white; color: #333; box-shadow: none; }
+            .app-header h1 { color: var(--primary); }
+            .app-header .date-display { color: #666; }
         }
     </style>
 </head>
 <body>
 
-<div class="card">
+<div class="app-header">
     <h1>Detox Plan</h1>
     <div class="date-display" id="dateDisplay"></div>
-    
+</div>
+
+<div class="card">
     <div class="tabs">
         <button class="tab-btn active" data-tab="diet">Diet Plan</button>
         <button class="tab-btn" data-tab="medicine">Medicine</button>
@@ -257,21 +303,48 @@
     
     <!-- Diet Plan Tab -->
     <div id="diet" class="tab-content active">
-        <h2 id="currentDay">Today's Schedule</h2>
-        <div id="schedule"></div>
-
-        <div class="points">
-            <strong>💡 Points to Remember:</strong>
-            <ul>
-                <li>Avoid all dairy and non-veg.</li>
-                <li>Drink min 2.5L of water daily.</li>
-                <li>Finish dinner before 7:30 PM.</li>
-                <li>Take Bath before sleep.</li>
-                <li>Take foot massage before sleep.</li>
-            </ul>
+        <div class="sub-tabs">
+            <button class="sub-tab-btn active" data-subtab="today">Today</button>
+            <button class="sub-tab-btn" data-subtab="tomorrow">Tomorrow</button>
         </div>
         
-        <button id="resetBtn" class="reset-btn">Reset All</button>
+        <!-- Today's Schedule -->
+        <div id="today" class="sub-tab-content active">
+            <h2 id="currentDay">Today's Schedule</h2>
+            <div id="schedule"></div>
+
+            <div class="points">
+                <strong>💡 Points to Remember:</strong>
+                <ul>
+                    <li>Avoid all dairy and non-veg.</li>
+                    <li>Drink min 2.5L of water daily.</li>
+                    <li>Finish dinner before 7:30 PM.</li>
+                    <li>Take Bath before sleep.</li>
+                    <li>Take foot massage before sleep.</li>
+                </ul>
+            </div>
+            
+            <button id="resetBtn" class="reset-btn">Reset All</button>
+        </div>
+        
+        <!-- Tomorrow's Schedule -->
+        <div id="tomorrow" class="sub-tab-content">
+            <h2 id="tomorrowDay">Tomorrow's Schedule</h2>
+            <div id="tomorrowSchedule"></div>
+
+            <div class="points">
+                <strong>💡 Points to Remember:</strong>
+                <ul>
+                    <li>Avoid all dairy and non-veg.</li>
+                    <li>Drink min 2.5L of water daily.</li>
+                    <li>Finish dinner before 7:30 PM.</li>
+                    <li>Take Bath before sleep.</li>
+                    <li>Take foot massage before sleep.</li>
+                </ul>
+            </div>
+            
+            <button id="resetTomorrowBtn" class="reset-btn">Reset All</button>
+        </div>
     </div>
     
     <!-- Medicine Plan Tab -->
@@ -280,8 +353,7 @@
         <table class="medicine-table">
             <thead>
                 <tr>
-                    <th>Timing</th>
-                    <th>When to Take</th>
+                    <th>Timing & When to Take</th>
                     <th>Male</th>
                     <th>Female</th>
                 </tr>
@@ -344,14 +416,22 @@
         "Sunday": { "Wake-up": "Tulsi Water (boil 4-5 leaves, strain)", "Breakfast": "Rice ganji (add pinch of cinnamon) OR Vegetable red rice poha", "Fruit": "Any Seasonal Fruit - 1 or 2 serving", "Lunch": "Vegetable pulao (1 medium bowl) + buttermilk (add pinch of hing)", "Evening": "Tomato chaat (1 medium bowl)", "Dinner": "Moong dal and beetroot tikki (4 no.) + sauteed veggies", "Bedtime": "Chamomile tea Or Star anise water" }
     };
 
-    const day = new Intl.DateTimeFormat('en-US', { weekday: 'long' }).format(new Date());
-    document.getElementById('currentDay').innerText = "Today: " + day;
-
-    const scheduleDiv = document.getElementById('schedule');
-    const todayMeals = dietData[day] || dietData["Monday"];
+    const today = new Date();
+    const tomorrow = new Date(today);
+    tomorrow.setDate(tomorrow.getDate() + 1);
+    
+    const days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+    const currentDay = days[today.getDay()];
+    const nextDay = days[tomorrow.getDay()];
+    
+    document.getElementById('currentDay').innerText = "Today: " + currentDay;
+    document.getElementById('tomorrowDay').innerText = "Tomorrow: " + nextDay;
 
     const times = { "9:00 AM": "Wake-up", "9:30 AM": "Breakfast", "11:00 AM": "Fruit", "1:30 PM": "Lunch", "4:00 PM": "Evening", "7:30 PM": "Dinner", "9:30 PM": "Bedtime" };
 
+    // Populate today's schedule
+    const scheduleDiv = document.getElementById('schedule');
+    const todayMeals = dietData[currentDay] || dietData["Monday"];
     for (const [time, key] of Object.entries(times)) {
         scheduleDiv.innerHTML += `
             <div class="meal-slot">
@@ -361,19 +441,45 @@
             </div>`;
     }
     
+    // Populate tomorrow's schedule
+    const tomorrowScheduleDiv = document.getElementById('tomorrowSchedule');
+    const tomorrowMeals = dietData[nextDay] || dietData["Monday"];
+    for (const [time, key] of Object.entries(times)) {
+        tomorrowScheduleDiv.innerHTML += `
+            <div class="meal-slot">
+                <input type="checkbox" class="check-box">
+                <span class="time">${time}</span>
+                <span class="meal-name">${tomorrowMeals[key]}</span>
+            </div>`;
+    }
+    
+    // Add styles for h2 in tab-content
+    const style = document.createElement('style');
+    style.textContent = `
+        .tab-content h2 {
+            padding: 16px;
+            margin: 0;
+            border-bottom: 1px solid #f0f0f0;
+            font-size: 1.2em;
+        }
+        .tab-content.active {
+            padding-bottom: 16px;
+        }
+    `;
+    document.head.appendChild(style);
+    
     // Populate Medicine Table
     const medicineTableDiv = document.getElementById('medicineTable');
     medicineData.forEach((medicine, index) => {
         medicineTableDiv.innerHTML += `
             <tr>
-                <td>${medicine.timing}</td>
-                <td>${medicine.when}</td>
+                <td><strong>${medicine.timing}</strong><br><small style="color: #666;">${medicine.when}</small></td>
                 <td><input type="checkbox" class="medicine-check" data-index="${index}"> ${medicine.male}</td>
                 <td><input type="checkbox" class="medicine-check" data-index="${index}"> ${medicine.female}</td>
             </tr>`;
     });
     
-    // Tab switching
+    // Main tab switching
     document.querySelectorAll('.tab-btn').forEach(btn => {
         btn.addEventListener('click', function() {
             const tabName = this.getAttribute('data-tab');
@@ -388,9 +494,30 @@
         });
     });
     
+    // Sub-tab switching for Diet Plan
+    document.querySelectorAll('.sub-tab-btn').forEach(btn => {
+        btn.addEventListener('click', function() {
+            const subtabName = this.getAttribute('data-subtab');
+            
+            // Remove active class from all sub-tabs and sub-contents
+            document.querySelectorAll('.sub-tab-btn').forEach(b => b.classList.remove('active'));
+            document.querySelectorAll('.sub-tab-content').forEach(c => c.classList.remove('active'));
+            
+            // Add active class to clicked sub-tab and corresponding content
+            this.classList.add('active');
+            document.getElementById(subtabName).classList.add('active');
+        });
+    });
+    
     // Reset Diet Plan button functionality
     document.getElementById('resetBtn').addEventListener('click', function() {
-        const checkboxes = document.querySelectorAll('#diet .check-box');
+        const checkboxes = document.querySelectorAll('#today .check-box');
+        checkboxes.forEach(checkbox => checkbox.checked = false);
+    });
+    
+    // Reset Tomorrow's Diet Plan button functionality
+    document.getElementById('resetTomorrowBtn').addEventListener('click', function() {
+        const checkboxes = document.querySelectorAll('#tomorrow .check-box');
         checkboxes.forEach(checkbox => checkbox.checked = false);
     });
     
