@@ -250,6 +250,7 @@
             flex: 1;
             overflow-y: auto;
             -webkit-overflow-scrolling: touch;
+            align-content: start;
         }
         
         .gallery-item {
@@ -257,13 +258,56 @@
             border-radius: 12px;
             box-shadow: 0 2px 8px rgba(0,0,0,0.1);
             background: #f5f5f5;
+            width: 100%;
         }
         
         .gallery-item img {
             width: 100%;
             height: auto;
             display: block;
-            object-fit: cover;
+            object-fit: contain;
+        }
+        
+        /* Notes Tab Styling */
+        .notes-content {
+            padding: 16px;
+            flex: 1;
+            overflow-y: auto;
+            -webkit-overflow-scrolling: touch;
+        }
+        
+        .notes-content h3 {
+            color: var(--primary);
+            font-size: 1.1em;
+            margin-top: 18px;
+            margin-bottom: 12px;
+            font-weight: 600;
+            border-bottom: 2px solid var(--primary);
+            padding-bottom: 8px;
+        }
+        
+        .notes-content h3:first-child {
+            margin-top: 0;
+        }
+        
+        .notes-content ul {
+            list-style-position: inside;
+            padding-left: 0;
+            margin-bottom: 16px;
+        }
+        
+        .notes-content li {
+            color: #333;
+            font-size: 0.95em;
+            line-height: 1.6;
+            margin-bottom: 10px;
+        }
+        
+        .notes-content p {
+            color: #666;
+            font-size: 0.95em;
+            line-height: 1.6;
+            margin-bottom: 12px;
         }
         
         /* Desktop Optimization */
@@ -304,6 +348,7 @@
         <button class="tab-btn active" data-tab="diet">Diet Plan</button>
         <button class="tab-btn" data-tab="medicine">Medicine</button>
         <button class="tab-btn" data-tab="exercises">Exercises</button>
+        <button class="tab-btn" data-tab="notes">Notes</button>
     </div>
     
     <!-- Diet Plan Tab -->
@@ -380,6 +425,51 @@
             <div class="gallery-item">
                 <img src="image_3.png" alt="Exercise 3">
             </div>
+        </div>
+    </div>
+    
+    <!-- Notes Tab -->
+    <div id="notes" class="tab-content">
+        <div class="notes-content">
+            <h3>POINTS TO REMEMBER</h3>
+            <ul>
+                <li>Take a great serving of gourd vegetables in your curry those are enriched with soluble fibre and good water content too.</li>
+                <li>Use olive oil in salad dressing.</li>
+                <li>Avoid dairy products (milk, curd and paneer) or mixing fruit with dairy products (smoothies, pudding, custard etc).</li>
+                <li>Restricting non-vegetarian foods will reduce digestive load so the body can focus on eliminating toxins rather than breaking down complex proteins and fats.</li>
+                <li>Avoid all preserved/packaged/processed foods or foods with artificial colours/additives/flavours.</li>
+                <li>Use iodized salt (3g for one individual) for cooking as iodine is very important for the thyroid gland.</li>
+                <li>Be regular with foot massages before going to bed.</li>
+                <li>Digestive powder (roast and blend jeera, ajwain and fennel seeds powder together in fine powder).</li>
+                <li>Minimum try to cover 2.5 L/day of water intake.</li>
+            </ul>
+            
+            <h3>MUNCHING OPTIONS FOR CRAVINGS</h3>
+            <ul>
+                <li>Roasted makhana/masala makhana</li>
+                <li>Baked vegetables chips</li>
+                <li>Homemade popcorn</li>
+                <li>Puffed rajgira</li>
+            </ul>
+            
+            <h3>SLEEP ROUTINE</h3>
+            <p><em>(Strictly follow an early to bed and early to wake up schedule)</em></p>
+            <ul>
+                <li>Finish your dinner 2 hours before bed time and keep it subtle on the gut (less spicy and less oily).</li>
+                <li>Get rid of electronic devices 1 hour before bedtime.</li>
+                <li>Take a shower and do a warm oil massage to the soles of your feet.</li>
+                <li>It will be slightly time consuming to fall asleep, consistency is the key to correct your natural body clock.</li>
+            </ul>
+            
+            <h3>YOGA CLASS</h3>
+            <ul>
+                <li>Take a small meal 30 mins before the class.</li>
+                <li>Do not go empty stomach as you will feel exhausted.</li>
+                <li>Fix the timing and join the same session as far as possible to help with a set routine.</li>
+                <li>Try to give intervals between every 2-3 hours, avoid long sitting hours. You can make a habit of stretching your body.</li>
+            </ul>
+            
+            <p style="text-align: center; margin-top: 20px; color: var(--primary); font-weight: 600;">www.imumz.com</p>
         </div>
     </div>
 </div>
