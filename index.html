@@ -418,14 +418,28 @@
         
         /* Clickable meal items */
         .meal-name {
-            cursor: pointer;
-            border-bottom: 1px dotted var(--primary);
+            flex: 1;
+            padding-left: 8px;
+            transition: color 0.3s;
+            font-size: 0.95em;
         }
         
-        .meal-name:hover {
-            background: rgba(46, 125, 50, 0.05);
+        .meal-name.has-recipe {
+            color: #1976d2;
+            text-decoration: underline;
+            cursor: pointer;
+            font-weight: 500;
+        }
+        
+        .meal-name.has-recipe:hover {
+            color: #1565c0;
+            background: rgba(25, 118, 210, 0.05);
             border-radius: 4px;
             padding: 2px 4px;
+        }
+        
+        .meal-name.no-recipe {
+            color: #333;
         }
         
         /* Desktop Optimization */
@@ -625,11 +639,15 @@
         const todayMeals = dietData[currentDay] || dietData["Monday"];
         for (const [time, key] of Object.entries(mealTimes)) {
             const mealName = todayMeals[key];
+            const hasRecipe = recipesData.hasOwnProperty(mealName);
+            const mealClass = hasRecipe ? 'has-recipe' : 'no-recipe';
+            const onClickAttr = hasRecipe ? `onclick="showRecipe('${mealName.replace(/'/g, "\\'").replace(/"/g, '&quot;')}')"` : '';
+            
             scheduleDiv.innerHTML += `
                 <div class="meal-slot">
                     <input type="checkbox" class="check-box">
                     <span class="time">${time}</span>
-                    <span class="meal-name" onclick="showRecipe('${mealName.replace(/'/g, "\\'").replace(/"/g, '&quot;')}')">${mealName}</span>
+                    <span class="meal-name ${mealClass}" ${onClickAttr}>${mealName}</span>
                 </div>`;
         }
         
@@ -638,11 +656,15 @@
         const tomorrowMeals = dietData[nextDay] || dietData["Monday"];
         for (const [time, key] of Object.entries(mealTimes)) {
             const mealName = tomorrowMeals[key];
+            const hasRecipe = recipesData.hasOwnProperty(mealName);
+            const mealClass = hasRecipe ? 'has-recipe' : 'no-recipe';
+            const onClickAttr = hasRecipe ? `onclick="showRecipe('${mealName.replace(/'/g, "\\'").replace(/"/g, '&quot;')}')"` : '';
+            
             tomorrowScheduleDiv.innerHTML += `
                 <div class="meal-slot">
                     <input type="checkbox" class="check-box">
                     <span class="time">${time}</span>
-                    <span class="meal-name" onclick="showRecipe('${mealName.replace(/'/g, "\\'").replace(/"/g, '&quot;')}')">${mealName}</span>
+                    <span class="meal-name ${mealClass}" ${onClickAttr}>${mealName}</span>
                 </div>`;
         }
     }
