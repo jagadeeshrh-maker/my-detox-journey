@@ -431,45 +431,7 @@
     <!-- Notes Tab -->
     <div id="notes" class="tab-content">
         <div class="notes-content">
-            <h3>POINTS TO REMEMBER</h3>
-            <ul>
-                <li>Take a great serving of gourd vegetables in your curry those are enriched with soluble fibre and good water content too.</li>
-                <li>Use olive oil in salad dressing.</li>
-                <li>Avoid dairy products (milk, curd and paneer) or mixing fruit with dairy products (smoothies, pudding, custard etc).</li>
-                <li>Restricting non-vegetarian foods will reduce digestive load so the body can focus on eliminating toxins rather than breaking down complex proteins and fats.</li>
-                <li>Avoid all preserved/packaged/processed foods or foods with artificial colours/additives/flavours.</li>
-                <li>Use iodized salt (3g for one individual) for cooking as iodine is very important for the thyroid gland.</li>
-                <li>Be regular with foot massages before going to bed.</li>
-                <li>Digestive powder (roast and blend jeera, ajwain and fennel seeds powder together in fine powder).</li>
-                <li>Minimum try to cover 2.5 L/day of water intake.</li>
-            </ul>
-            
-            <h3>MUNCHING OPTIONS FOR CRAVINGS</h3>
-            <ul>
-                <li>Roasted makhana/masala makhana</li>
-                <li>Baked vegetables chips</li>
-                <li>Homemade popcorn</li>
-                <li>Puffed rajgira</li>
-            </ul>
-            
-            <h3>SLEEP ROUTINE</h3>
-            <p><em>(Strictly follow an early to bed and early to wake up schedule)</em></p>
-            <ul>
-                <li>Finish your dinner 2 hours before bed time and keep it subtle on the gut (less spicy and less oily).</li>
-                <li>Get rid of electronic devices 1 hour before bedtime.</li>
-                <li>Take a shower and do a warm oil massage to the soles of your feet.</li>
-                <li>It will be slightly time consuming to fall asleep, consistency is the key to correct your natural body clock.</li>
-            </ul>
-            
-            <h3>YOGA CLASS</h3>
-            <ul>
-                <li>Take a small meal 30 mins before the class.</li>
-                <li>Do not go empty stomach as you will feel exhausted.</li>
-                <li>Fix the timing and join the same session as far as possible to help with a set routine.</li>
-                <li>Try to give intervals between every 2-3 hours, avoid long sitting hours. You can make a habit of stretching your body.</li>
-            </ul>
-            
-            <p style="text-align: center; margin-top: 20px; color: var(--primary); font-weight: 600;">www.imumz.com</p>
+            <!-- Content will be loaded dynamically from data/notes.json -->
         </div>
     </div>
 </div>
@@ -487,63 +449,123 @@
     updateDateTime();
     setInterval(updateDateTime, 1000);
     
-    // Medicine Plan Data
-    const medicineData = [
-        { timing: "9:00 AM", when: "Before Breakfast", male: "Ashta Choornam (5gms) HW", female: "Ashta Choornam (5gms) HW" },
-        { timing: "9:30 AM", when: "After Breakfast", male: "Ayurslim Capsules (2 no.) & Ayaskrithi 25ml", female: "Sudarshanam Tab (2 no.) <br> Kumaryasava (25ml)" },
-        { timing: "1:30 PM", when: "Before Lunch", male: "NA", female: "NA" },
-        { timing: "2:00 PM", when: "After Lunch", male: "NA", female: "NA" },
-        { timing: "4:00 PM", when: "Before Evening", male: "NA", female: "NA" },
-        { timing: "7:30 PM", when: "Before Dinner", male: "Ashta Choornam (5gms) HW", female: " Ashta Chooranm (5gms) & Herbolax Capsules (3 no.)" },
-        { timing: "8:00 PM", when: "After Dinner", male: "Ayurslim Capsules (2 no.) & Ayaskrithi 25ml", female: "Sudarshanam Tablet (2 no.) & Kumaryasava (25ml)" },
-        { timing: "9:30 PM", when: "Before Bedtime", male: "Anulom DS Tablet (2 no.)", female: "NA" }
-    ];
-
-    const dietData = {
-        "Monday": { "Wake-up": "Ash gourd/bottle gourd juice (300ml)", "Breakfast": "Vegetable poha - 1 medium bowl (add 50% veggies)", "Fruit": "Any Seasonal Fruit - 1 or 2 serving", "Lunch": "Rice roti (2 no.) + bitter gourd sabzi (1 medium bowl) + moong dal (1 small bowl)", "Evening": "Tender Coconut with malai (1 glass)", "Dinner": "Tomato soup (1 medium bowl) + Makhana chaat (1 plate)", "Bedtime": "Cinnamon water" },
-        "Tuesday": { "Wake-up": "Ginger & mint water (boil 1 inch ginger & 3-4 mint leaves)", "Breakfast": "Neer Dosa (2 no.) with veg in batter + Coconut mint/Tomato chutney", "Fruit": "Any Seasonal Fruit - 1 or 2 serving", "Lunch": "Moong sprouts and Vegetable Curry with Brown Rice (1 small bowl) + cucumber salad", "Evening": "Rajgira flakes (2 fist full) + Green/peppermint tea", "Dinner": "Steamed vegetables (1 big bowl) using olive oil", "Bedtime": "Bayleaf water" },
-        "Wednesday": { "Wake-up": "Lemon-Ginger water", "Breakfast": "Green moong dosa (2 no.) + Tomato chutney (2 tsp)", "Fruit": "Any Seasonal Fruit - 1 or 2 serving", "Lunch": "Parboiled rice and yellow moong khichdi + Buttermilk (add ½ tsp jeera powder)", "Evening": "Roasted chana (1 fist) + Green/peppermint tea", "Dinner": "Pumpkin soup (1 big bowl)", "Bedtime": "Chamomile tea Or Star anise water" },
-        "Thursday": { "Wake-up": "Tulsi Water (boil 4-5 leaves, strain)", "Breakfast": "Oats dosa with veggies on top + mint chutney", "Fruit": "Any Seasonal Fruit - 1 or 2 serving", "Lunch": "Rice roti/bhakri (2 no.) + bottle gourd/beetroot sabzi + moong dal (1 small bowl)", "Evening": "Roasted makhana + Green/peppermint tea", "Dinner": "Sauteed mushroom and baby corn (250g) with seasonal green leafy vegetables", "Bedtime": "Cinnamon water" },
-        "Friday": { "Wake-up": "Ash gourd/bottle gourd juice (300ml - drink without straining)", "Breakfast": "Banana and coconut milk smoothie (300ml)", "Fruit": "Any Seasonal Fruit - 1 or 2 serving", "Lunch": "Kerala Rice (1 medium bowl) + Lauki sabzi + buttermilk (add pinch of hing)", "Evening": "Coconut water + malai (1 glass)", "Dinner": "Drumstick/Carrot soup (1 medium bowl) + steamed green moong (1 medium bowl)", "Bedtime": "Chamomile tea Or Star anise water" },
-        "Saturday": { "Wake-up": "Lemon-Ginger water", "Breakfast": "Steamed sweet potato chaat (1 medium bowl)", "Fruit": "Any Seasonal Fruit - 1 or 2 serving", "Lunch": "Rice roti (2 no.) + mix veg sabzi (1 medium bowl) + Buttermilk (add ½ tsp jeera powder)", "Evening": "Coconut water with malai / Green tea / peppermint tea", "Dinner": "Moong dal chilla (2 no.) + mint chutney", "Bedtime": "Bayleaf water" },
-        "Sunday": { "Wake-up": "Tulsi Water (boil 4-5 leaves, strain)", "Breakfast": "Rice ganji (add pinch of cinnamon) OR Vegetable red rice poha", "Fruit": "Any Seasonal Fruit - 1 or 2 serving", "Lunch": "Vegetable pulao (1 medium bowl) + buttermilk (add pinch of hing)", "Evening": "Tomato chaat (1 medium bowl)", "Dinner": "Moong dal and beetroot tikki (4 no.) + sauteed veggies", "Bedtime": "Chamomile tea Or Star anise water" }
-    };
-
-    const today = new Date();
-    const tomorrow = new Date(today);
-    tomorrow.setDate(tomorrow.getDate() + 1);
+    // Load data from external JSON files
+    let dietData = {};
+    let medicineData = [];
+    let mealTimes = {};
+    let notesData = {};
     
-    const days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
-    const currentDay = days[today.getDay()];
-    const nextDay = days[tomorrow.getDay()];
+    // Fetch Diet Data
+    Promise.all([
+        fetch('data/diet.json').then(res => res.json()),
+        fetch('data/medicine.json').then(res => res.json()),
+        fetch('data/notes.json').then(res => res.json()),
+        fetch('data/exercises.json').then(res => res.json())
+    ]).then(([dietResponse, medicineResponse, notesResponse, exercisesResponse]) => {
+        dietData = dietResponse.dietPlan;
+        mealTimes = dietResponse.mealTimes;
+        medicineData = medicineResponse.medicineData;
+        notesData = notesResponse.notes;
+        
+        // Initialize the app after data is loaded
+        initializeApp();
+        populateMedicineTable();
+        populateNotesTab();
+        populateExercisesGallery(exercisesResponse.exercises);
+    }).catch(error => console.error('Error loading data:', error));
     
-    document.getElementById('currentDay').innerText = "Today: " + currentDay;
-    document.getElementById('tomorrowDay').innerText = "Tomorrow: " + nextDay;
+    function initializeApp() {
+        const today = new Date();
+        const tomorrow = new Date(today);
+        tomorrow.setDate(tomorrow.getDate() + 1);
+        
+        const days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+        const currentDay = days[today.getDay()];
+        const nextDay = days[tomorrow.getDay()];
+        
+        document.getElementById('currentDay').innerText = "Today: " + currentDay;
+        document.getElementById('tomorrowDay').innerText = "Tomorrow: " + nextDay;
 
-    const times = { "9:00 AM": "Wake-up", "9:30 AM": "Breakfast", "11:00 AM": "Fruit", "1:30 PM": "Lunch", "4:00 PM": "Evening", "7:30 PM": "Dinner", "9:30 PM": "Bedtime" };
-
-    // Populate today's schedule
-    const scheduleDiv = document.getElementById('schedule');
-    const todayMeals = dietData[currentDay] || dietData["Monday"];
-    for (const [time, key] of Object.entries(times)) {
-        scheduleDiv.innerHTML += `
-            <div class="meal-slot">
-                <input type="checkbox" class="check-box">
-                <span class="time">${time}</span>
-                <span class="meal-name">${todayMeals[key]}</span>
-            </div>`;
+        // Populate today's schedule
+        const scheduleDiv = document.getElementById('schedule');
+        const todayMeals = dietData[currentDay] || dietData["Monday"];
+        for (const [time, key] of Object.entries(mealTimes)) {
+            scheduleDiv.innerHTML += `
+                <div class="meal-slot">
+                    <input type="checkbox" class="check-box">
+                    <span class="time">${time}</span>
+                    <span class="meal-name">${todayMeals[key]}</span>
+                </div>`;
+        }
+        
+        // Populate tomorrow's schedule
+        const tomorrowScheduleDiv = document.getElementById('tomorrowSchedule');
+        const tomorrowMeals = dietData[nextDay] || dietData["Monday"];
+        for (const [time, key] of Object.entries(mealTimes)) {
+            tomorrowScheduleDiv.innerHTML += `
+                <div class="meal-slot">
+                    <input type="checkbox" class="check-box">
+                    <span class="time">${time}</span>
+                    <span class="meal-name">${tomorrowMeals[key]}</span>
+                </div>`;
+        }
     }
     
-    // Populate tomorrow's schedule
-    const tomorrowScheduleDiv = document.getElementById('tomorrowSchedule');
-    const tomorrowMeals = dietData[nextDay] || dietData["Monday"];
-    for (const [time, key] of Object.entries(times)) {
-        tomorrowScheduleDiv.innerHTML += `
-            <div class="meal-slot">
-                <input type="checkbox" class="check-box">
-                <span class="time">${time}</span>
-                <span class="meal-name">${tomorrowMeals[key]}</span>
-            </div>`;
+    function populateMedicineTable() {
+        const medicineTableDiv = document.getElementById('medicineTable');
+        medicineData.forEach((medicine, index) => {
+            medicineTableDiv.innerHTML += `
+                <tr>
+                    <td><strong>${medicine.timing}</strong><br><small style="color: #666;">${medicine.when}</small></td>
+                    <td><input type="checkbox" class="medicine-check" data-index="${index}"> ${medicine.male}</td>
+                    <td><input type="checkbox" class="medicine-check" data-index="${index}"> ${medicine.female}</td>
+                </tr>`;
+        });
+    }
+    
+    function populateNotesTab() {
+        const notesContent = document.querySelector('.notes-content');
+        let html = '';
+        
+        html += '<h3>POINTS TO REMEMBER</h3><ul>';
+        notesData.pointsToRemember.forEach(point => {
+            html += `<li>${point}</li>`;
+        });
+        html += '</ul>';
+        
+        html += '<h3>MUNCHING OPTIONS FOR CRAVINGS</h3><ul>';
+        notesData.munchingOptions.forEach(option => {
+            html += `<li>${option}</li>`;
+        });
+        html += '</ul>';
+        
+        html += '<h3>SLEEP ROUTINE</h3><p><em>(Strictly follow an early to bed and early to wake up schedule)</em></p><ul>';
+        notesData.sleepRoutine.forEach(item => {
+            html += `<li>${item}</li>`;
+        });
+        html += '</ul>';
+        
+        html += '<h3>YOGA CLASS</h3><ul>';
+        notesData.yogaClass.forEach(item => {
+            html += `<li>${item}</li>`;
+        });
+        html += '</ul>';
+        
+        html += `<p style="text-align: center; margin-top: 20px; color: var(--primary); font-weight: 600;">${notesData.website}</p>`;
+        
+        notesContent.innerHTML = html;
+    }
+    
+    function populateExercisesGallery(exercises) {
+        const imageGallery = document.querySelector('.image-gallery');
+        imageGallery.innerHTML = '';
+        
+        exercises.forEach(exercise => {
+            imageGallery.innerHTML += `
+                <div class="gallery-item">
+                    <img src="${exercise.image}" alt="${exercise.title}">
+                </div>`;
+        });
     }
     
     // Add styles for h2 in tab-content
@@ -560,17 +582,6 @@
         }
     `;
     document.head.appendChild(style);
-    
-    // Populate Medicine Table
-    const medicineTableDiv = document.getElementById('medicineTable');
-    medicineData.forEach((medicine, index) => {
-        medicineTableDiv.innerHTML += `
-            <tr>
-                <td><strong>${medicine.timing}</strong><br><small style="color: #666;">${medicine.when}</small></td>
-                <td><input type="checkbox" class="medicine-check" data-index="${index}"> ${medicine.male}</td>
-                <td><input type="checkbox" class="medicine-check" data-index="${index}"> ${medicine.female}</td>
-            </tr>`;
-    });
     
     // Main tab switching
     document.querySelectorAll('.tab-btn').forEach(btn => {

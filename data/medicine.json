@@ -1,0 +1,52 @@
+{
+  "medicineData": [
+    {
+      "timing": "9:00 AM",
+      "when": "Before Breakfast",
+      "male": "Ashta Choornam (5gms) HW",
+      "female": "Ashta Choornam (5gms) HW"
+    },
+    {
+      "timing": "9:30 AM",
+      "when": "After Breakfast",
+      "male": "Ayurslim Capsules (2 no.) & Ayaskrithi 25ml",
+      "female": "Sudarshanam Tab (2 no.) <br> Kumaryasava (25ml)"
+    },
+    {
+      "timing": "1:30 PM",
+      "when": "Before Lunch",
+      "male": "NA",
+      "female": "NA"
+    },
+    {
+      "timing": "2:00 PM",
+      "when": "After Lunch",
+      "male": "NA",
+      "female": "NA"
+    },
+    {
+      "timing": "4:00 PM",
+      "when": "Before Evening",
+      "male": "NA",
+      "female": "NA"
+    },
+    {
+      "timing": "7:30 PM",
+      "when": "Before Dinner",
+      "male": "Ashta Choornam (5gms) HW",
+      "female": " Ashta Chooranm (5gms) & Herbolax Capsules (3 no.)"
+    },
+    {
+      "timing": "8:00 PM",
+      "when": "After Dinner",
+      "male": "Ayurslim Capsules (2 no.) & Ayaskrithi 25ml",
+      "female": "Sudarshanam Tablet (2 no.) & Kumaryasava (25ml)"
+    },
+    {
+      "timing": "9:30 PM",
+      "when": "Before Bedtime",
+      "male": "Anulom DS Tablet (2 no.)",
+      "female": "NA"
+    }
+  ]
+}

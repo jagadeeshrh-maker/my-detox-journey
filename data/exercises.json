@@ -1,0 +1,19 @@
+{
+  "exercises": [
+    {
+      "id": 1,
+      "title": "Exercise 1",
+      "image": "images/exercise_1.png"
+    },
+    {
+      "id": 2,
+      "title": "Exercise 2",
+      "image": "images/exercise_2.png"
+    },
+    {
+      "id": 3,
+      "title": "Exercise 3",
+      "image": "images/exercise_3.png"
+    }
+  ]
+}

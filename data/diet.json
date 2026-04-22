@@ -1,0 +1,76 @@
+{
+  "dietPlan": {
+    "Monday": {
+      "Wake-up": "Ash gourd/bottle gourd juice (300ml)",
+      "Breakfast": "Vegetable poha - 1 medium bowl (add 50% veggies)",
+      "Fruit": "Any Seasonal Fruit - 1 or 2 serving",
+      "Lunch": "Rice roti (2 no.) + bitter gourd sabzi (1 medium bowl) + moong dal (1 small bowl)",
+      "Evening": "Tender Coconut with malai (1 glass)",
+      "Dinner": "Tomato soup (1 medium bowl) + Makhana chaat (1 plate)",
+      "Bedtime": "Cinnamon water"
+    },
+    "Tuesday": {
+      "Wake-up": "Ginger & mint water (boil 1 inch ginger & 3-4 mint leaves)",
+      "Breakfast": "Neer Dosa (2 no.) with veg in batter + Coconut mint/Tomato chutney",
+      "Fruit": "Any Seasonal Fruit - 1 or 2 serving",
+      "Lunch": "Moong sprouts and Vegetable Curry with Brown Rice (1 small bowl) + cucumber salad",
+      "Evening": "Rajgira flakes (2 fist full) + Green/peppermint tea",
+      "Dinner": "Steamed vegetables (1 big bowl) using olive oil",
+      "Bedtime": "Bayleaf water"
+    },
+    "Wednesday": {
+      "Wake-up": "Lemon-Ginger water",
+      "Breakfast": "Green moong dosa (2 no.) + Tomato chutney (2 tsp)",
+      "Fruit": "Any Seasonal Fruit - 1 or 2 serving",
+      "Lunch": "Parboiled rice and yellow moong khichdi + Buttermilk (add ½ tsp jeera powder)",
+      "Evening": "Roasted chana (1 fist) + Green/peppermint tea",
+      "Dinner": "Pumpkin soup (1 big bowl)",
+      "Bedtime": "Chamomile tea Or Star anise water"
+    },
+    "Thursday": {
+      "Wake-up": "Tulsi Water (boil 4-5 leaves, strain)",
+      "Breakfast": "Oats dosa with veggies on top + mint chutney",
+      "Fruit": "Any Seasonal Fruit - 1 or 2 serving",
+      "Lunch": "Rice roti/bhakri (2 no.) + bottle gourd/beetroot sabzi + moong dal (1 small bowl)",
+      "Evening": "Roasted makhana + Green/peppermint tea",
+      "Dinner": "Sauteed mushroom and baby corn (250g) with seasonal green leafy vegetables",
+      "Bedtime": "Cinnamon water"
+    },
+    "Friday": {
+      "Wake-up": "Ash gourd/bottle gourd juice (300ml - drink without straining)",
+      "Breakfast": "Banana and coconut milk smoothie (300ml)",
+      "Fruit": "Any Seasonal Fruit - 1 or 2 serving",
+      "Lunch": "Kerala Rice (1 medium bowl) + Lauki sabzi + buttermilk (add pinch of hing)",
+      "Evening": "Coconut water + malai (1 glass)",
+      "Dinner": "Drumstick/Carrot soup (1 medium bowl) + steamed green moong (1 medium bowl)",
+      "Bedtime": "Chamomile tea Or Star anise water"
+    },
+    "Saturday": {
+      "Wake-up": "Lemon-Ginger water",
+      "Breakfast": "Steamed sweet potato chaat (1 medium bowl)",
+      "Fruit": "Any Seasonal Fruit - 1 or 2 serving",
+      "Lunch": "Rice roti (2 no.) + mix veg sabzi (1 medium bowl) + Buttermilk (add ½ tsp jeera powder)",
+      "Evening": "Coconut water with malai / Green tea / peppermint tea",
+      "Dinner": "Moong dal chilla (2 no.) + mint chutney",
+      "Bedtime": "Bayleaf water"
+    },
+    "Sunday": {
+      "Wake-up": "Tulsi Water (boil 4-5 leaves, strain)",
+      "Breakfast": "Rice ganji (add pinch of cinnamon) OR Vegetable red rice poha",
+      "Fruit": "Any Seasonal Fruit - 1 or 2 serving",
+      "Lunch": "Vegetable pulao (1 medium bowl) + buttermilk (add pinch of hing)",
+      "Evening": "Tomato chaat (1 medium bowl)",
+      "Dinner": "Moong dal and beetroot tikki (4 no.) + sauteed veggies",
+      "Bedtime": "Chamomile tea Or Star anise water"
+    }
+  },
+  "mealTimes": {
+    "9:00 AM": "Wake-up",
+    "9:30 AM": "Breakfast",
+    "11:00 AM": "Fruit",
+    "1:30 PM": "Lunch",
+    "4:00 PM": "Evening",
+    "7:30 PM": "Dinner",
+    "9:30 PM": "Bedtime"
+  }
+}
