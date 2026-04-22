@@ -310,6 +310,124 @@
             margin-bottom: 12px;
         }
         
+        /* Recipe Modal Styling */
+        .recipe-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.6);
+            z-index: 1000;
+            overflow-y: auto;
+            -webkit-overflow-scrolling: touch;
+        }
+        
+        .recipe-modal.active {
+            display: flex;
+            align-items: flex-start;
+            justify-content: center;
+            padding-top: 50px;
+        }
+        
+        .recipe-modal-content {
+            background: white;
+            border-radius: 16px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+            max-width: 95%;
+            width: 100%;
+            max-height: 90vh;
+            overflow-y: auto;
+            -webkit-overflow-scrolling: touch;
+            padding: 20px;
+            animation: slideUp 0.3s ease-out;
+        }
+        
+        @keyframes slideUp {
+            from {
+                transform: translateY(40px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+        
+        .recipe-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 2px solid var(--primary);
+        }
+        
+        .recipe-header h2 {
+            color: var(--primary);
+            margin: 0;
+            font-size: 1.3em;
+            flex: 1;
+        }
+        
+        .recipe-close-btn {
+            background: #d32f2f;
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 36px;
+            height: 36px;
+            font-size: 24px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background 0.3s;
+            flex-shrink: 0;
+            margin-left: 10px;
+        }
+        
+        .recipe-close-btn:active {
+            background: #b71c1c;
+            transform: scale(0.95);
+        }
+        
+        .recipe-section {
+            margin-bottom: 20px;
+        }
+        
+        .recipe-section h3 {
+            color: var(--primary);
+            font-size: 1.1em;
+            margin-bottom: 12px;
+            font-weight: 600;
+        }
+        
+        .recipe-section ul {
+            padding-left: 20px;
+            list-style-type: disc;
+        }
+        
+        .recipe-section li {
+            color: #333;
+            font-size: 0.95em;
+            line-height: 1.6;
+            margin-bottom: 8px;
+        }
+        
+        /* Clickable meal items */
+        .meal-name {
+            cursor: pointer;
+            border-bottom: 1px dotted var(--primary);
+        }
+        
+        .meal-name:hover {
+            background: rgba(46, 125, 50, 0.05);
+            border-radius: 4px;
+            padding: 2px 4px;
+        }
+        
         /* Desktop Optimization */
         @media (min-width: 429px) {
             .card { padding: 20px; border-radius: 12px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); max-width: 600px; margin: auto; }
@@ -436,6 +554,19 @@
     </div>
 </div>
 
+<!-- Recipe Modal -->
+<div id="recipeModal" class="recipe-modal">
+    <div class="recipe-modal-content">
+        <div class="recipe-header">
+            <h2 id="recipeTitle">Recipe</h2>
+            <button class="recipe-close-btn" onclick="closeRecipeModal()">×</button>
+        </div>
+        <div id="recipeBody">
+            <!-- Recipe content will be loaded here -->
+        </div>
+    </div>
+</div>
+
 <script>
     // Display today's date and time
     function updateDateTime() {
@@ -454,18 +585,21 @@
     let medicineData = [];
     let mealTimes = {};
     let notesData = {};
+    let recipesData = {};
     
     // Fetch Diet Data
     Promise.all([
         fetch('data/diet.json').then(res => res.json()),
         fetch('data/medicine.json').then(res => res.json()),
         fetch('data/notes.json').then(res => res.json()),
-        fetch('data/exercises.json').then(res => res.json())
-    ]).then(([dietResponse, medicineResponse, notesResponse, exercisesResponse]) => {
+        fetch('data/exercises.json').then(res => res.json()),
+        fetch('data/recipes.json').then(res => res.json())
+    ]).then(([dietResponse, medicineResponse, notesResponse, exercisesResponse, recipesResponse]) => {
         dietData = dietResponse.dietPlan;
         mealTimes = dietResponse.mealTimes;
         medicineData = medicineResponse.medicineData;
         notesData = notesResponse.notes;
+        recipesData = recipesResponse.recipes;
         
         // Initialize the app after data is loaded
         initializeApp();
@@ -490,11 +624,12 @@
         const scheduleDiv = document.getElementById('schedule');
         const todayMeals = dietData[currentDay] || dietData["Monday"];
         for (const [time, key] of Object.entries(mealTimes)) {
+            const mealName = todayMeals[key];
             scheduleDiv.innerHTML += `
                 <div class="meal-slot">
                     <input type="checkbox" class="check-box">
                     <span class="time">${time}</span>
-                    <span class="meal-name">${todayMeals[key]}</span>
+                    <span class="meal-name" onclick="showRecipe('${mealName.replace(/'/g, "\\'").replace(/"/g, '&quot;')}')">${mealName}</span>
                 </div>`;
         }
         
@@ -502,11 +637,12 @@
         const tomorrowScheduleDiv = document.getElementById('tomorrowSchedule');
         const tomorrowMeals = dietData[nextDay] || dietData["Monday"];
         for (const [time, key] of Object.entries(mealTimes)) {
+            const mealName = tomorrowMeals[key];
             tomorrowScheduleDiv.innerHTML += `
                 <div class="meal-slot">
                     <input type="checkbox" class="check-box">
                     <span class="time">${time}</span>
-                    <span class="meal-name">${tomorrowMeals[key]}</span>
+                    <span class="meal-name" onclick="showRecipe('${mealName.replace(/'/g, "\\'").replace(/"/g, '&quot;')}')">${mealName}</span>
                 </div>`;
         }
     }
@@ -629,6 +765,48 @@
     document.getElementById('resetMedicineBtn').addEventListener('click', function() {
         const checkboxes = document.querySelectorAll('#medicine .medicine-check');
         checkboxes.forEach(checkbox => checkbox.checked = false);
+    });
+    
+    // Recipe Modal Functions
+    function showRecipe(mealName) {
+        if (!recipesData[mealName]) {
+            alert('Recipe not available for this item.');
+            return;
+        }
+        
+        const recipe = recipesData[mealName];
+        let recipeHTML = '';
+        
+        if (recipe.ingredients) {
+            recipeHTML += '<div class="recipe-section"><h3>Ingredients</h3><ul>';
+            recipe.ingredients.forEach(ingredient => {
+                recipeHTML += `<li>${ingredient}</li>`;
+            });
+            recipeHTML += '</ul></div>';
+        }
+        
+        if (recipe.steps) {
+            recipeHTML += '<div class="recipe-section"><h3>Steps</h3><ul>';
+            recipe.steps.forEach(step => {
+                recipeHTML += `<li>${step}</li>`;
+            });
+            recipeHTML += '</ul></div>';
+        }
+        
+        document.getElementById('recipeTitle').textContent = mealName;
+        document.getElementById('recipeBody').innerHTML = recipeHTML;
+        document.getElementById('recipeModal').classList.add('active');
+    }
+    
+    function closeRecipeModal() {
+        document.getElementById('recipeModal').classList.remove('active');
+    }
+    
+    // Close modal when clicking outside
+    document.getElementById('recipeModal').addEventListener('click', function(e) {
+        if (e.target === this) {
+            closeRecipeModal();
+        }
     });
 </script>
 </body>

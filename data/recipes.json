@@ -1,0 +1,64 @@
+{
+  "recipes": {
+    "Ash gourd/bottle gourd juice (300ml)": {
+      "ingredients": ["1 cup ash gourd/bottle gourd, chopped", "Water"],
+      "steps": ["Wash and peel the gourd", "Chop into pieces", "Blend with 1 cup water", "Strain and serve fresh", "Avoid adding salt or sugar"]
+    },
+    "Vegetable poha - 1 medium bowl (add 50% veggies)": {
+      "ingredients": ["1 cup poha (flattened rice)", "1 medium onion, diced", "2 medium potatoes, diced", "1 cup mixed vegetables (peas, carrots, beans)", "1 tbsp oil", "1 tsp mustard seeds", "Curry leaves", "Salt to taste"],
+      "steps": ["Heat oil, add mustard seeds and curry leaves", "Add diced onions and potatoes, sauté until soft", "Add remaining vegetables, cook for 2-3 minutes", "Add poha, mix well and cook for 2 minutes", "Season with salt and serve hot"]
+    },
+    "Neer Dosa (2 no.) with veg in batter + Coconut mint/Tomato chutney": {
+      "ingredients": ["1 cup rice", "½ cup urad dal", "Salt to taste", "Oil for cooking", "Mixed vegetables (onion, carrot, capsicum)"],
+      "steps": ["Soak rice and urad dal for 4-6 hours", "Grind to a smooth paste without adding too much water", "Heat a non-stick pan/tawa, pour batter thinly", "Spread vegetables on top before it sets", "Cook until golden, flip and cook other side", "Serve with chutney"]
+    },
+    "Green moong dosa (2 no.) + Tomato chutney (2 tsp)": {
+      "ingredients": ["1 cup green moong dal", "¼ cup rice", "Salt to taste", "Oil for cooking"],
+      "steps": ["Soak green moong and rice for 2-3 hours", "Grind to a smooth batter", "Heat pan, spread batter thinly", "Cook until edges are crispy", "Flip and cook other side", "Serve with tomato chutney"]
+    },
+    "Tomato soup (1 medium bowl) + Makhana chaat (1 plate)": {
+      "ingredients": ["4-5 tomatoes", "1 onion", "1 inch ginger", "2-3 cloves garlic", "Oil/ghee", "Salt and pepper", "Fresh coriander"],
+      "steps": ["Heat oil, add onion, ginger, garlic paste", "Add chopped tomatoes", "Cook until soft, blend into smooth puree", "Return to pot, add salt and pepper", "Cook for 2-3 minutes", "Garnish with coriander and serve hot"]
+    },
+    "Ginger & mint water (boil 1 inch ginger & 3-4 mint leaves)": {
+      "ingredients": ["1 inch ginger, sliced", "3-4 fresh mint leaves", "2 cups water", "Optional: 1 tsp lemon juice"],
+      "steps": ["Boil water in a pot", "Add sliced ginger and mint leaves", "Simmer for 5-7 minutes", "Strain and serve warm", "Can add lemon juice if desired"]
+    },
+    "Cinnamon water": {
+      "ingredients": ["1 small cinnamon stick (1 inch)", "2 cups water"],
+      "steps": ["Boil water in a pot", "Add cinnamon stick", "Simmer for 5 minutes", "Strain and drink warm before bed"]
+    },
+    "Bayleaf water": {
+      "ingredients": ["2-3 bay leaves", "2 cups water"],
+      "steps": ["Boil water", "Add bay leaves", "Simmer for 5 minutes", "Strain and serve warm"]
+    },
+    "Chamomile tea Or Star anise water": {
+      "ingredients": ["1 chamomile tea bag or 1 tsp dried chamomile", "1 star anise", "1 cup water"],
+      "steps": ["Boil water", "Add chamomile tea bag or star anise", "Steep for 5 minutes", "Strain and serve warm"]
+    },
+    "Tender Coconut with malai (1 glass)": {
+      "ingredients": ["1 tender coconut", "Tender coconut water", "Tender coconut malai (soft flesh)"],
+      "steps": ["Cut tender coconut carefully", "Extract the water in a glass", "Scoop out the soft malai with a spoon", "Mix malai with the coconut water", "Consume fresh"]
+    },
+    "Rajgira flakes (2 fist full) + Green/peppermint tea": {
+      "ingredients": ["2 fist full rajgira flakes", "1 cup water", "Green/peppermint tea (1 bag or 1 tsp leaves)"],
+      "steps": ["Boil water for tea", "Add green or peppermint leaves", "Steep for 3-4 minutes and strain", "Eat rajgira flakes separately as dry snack or with milk alternative"]
+    },
+    "Steamed vegetables (1 big bowl) using olive oil": {
+      "ingredients": ["Mixed vegetables (broccoli, carrot, zucchini, bell pepper)", "2 tbsp olive oil", "Salt and pepper", "Fresh herbs (optional)"],
+      "steps": ["Cut vegetables into uniform sizes", "Steam vegetables for 10-12 minutes until tender-crisp", "Transfer to a bowl", "Drizzle with olive oil, add salt and pepper", "Serve warm"]
+    },
+    "Lemon-Ginger water": {
+      "ingredients": ["½ inch ginger", "½ lemon", "1 glass water", "Optional: 1 tsp honey"],
+      "steps": ["Cut ginger into small pieces", "Boil water", "Add ginger pieces, simmer for 3-4 minutes", "Squeeze lemon juice", "Add honey if desired (optional)", "Strain and serve warm"]
+    },
+    "Parboiled rice and yellow moong khichdi + Buttermilk (add ½ tsp jeera powder)": {
+      "ingredients": ["½ cup parboiled rice", "½ cup yellow moong dal", "2 tbsp ghee", "1 inch ginger, minced", "½ tsp cumin seeds", "Turmeric powder", "Salt to taste"],
+      "steps": ["Wash rice and moong dal", "Heat ghee, add cumin seeds and ginger", "Add rice and moong dal, roast for 1 minute", "Add 2 cups water, turmeric, and salt", "Cook on high heat until boiling", "Reduce heat and simmer until cooked (15-20 mins)", "Serve with buttermilk flavored with jeera powder"]
+    },
+    "Roasted chana (1 fist) + Green/peppermint tea": {
+      "ingredients": ["1 cup dried chana", "Salt to taste"],
+      "steps": ["Soak chana overnight", "Boil until cooked", "Drain and dry on a cloth", "Roast in a pan on medium heat until crispy", "Add salt and store in an airtight container"]
+    }
+  }
+}
