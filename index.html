@@ -675,10 +675,9 @@
         fetch('data/diet.json').then(res => res.json()),
         fetch('data/medicine.json').then(res => res.json()),
         fetch('data/notes.json').then(res => res.json()),
-        fetch('data/exercises.json').then(res => res.json()),
         fetch('data/recipes.json').then(res => res.json()),
         fetch('data/yoga.json').then(res => res.json())
-    ]).then(([dietResponse, medicineResponse, notesResponse, exercisesResponse, recipesResponse, yogaResponse]) => {
+    ]).then(([dietResponse, medicineResponse, notesResponse, recipesResponse, yogaResponse]) => {
         dietData = dietResponse.dietPlan;
         mealTimes = dietResponse.mealTimes;
         medicineData = medicineResponse.medicineData;
@@ -690,7 +689,6 @@
         initializeApp();
         populateMedicineTable();
         populateNotesTab();
-        populateExercisesGallery(exercisesResponse.exercises);
         populateYogaGallery();
     }).catch(error => console.error('Error loading data:', error));
     
