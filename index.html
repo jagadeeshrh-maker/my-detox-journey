@@ -386,6 +386,81 @@
             font-weight: 500;
         }
         
+        /* Video Player Modal Styling */
+        .video-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.9);
+            z-index: 1000;
+            overflow-y: auto;
+            -webkit-overflow-scrolling: touch;
+        }
+        
+        .video-modal.active {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+        
+        .video-modal-content {
+            position: relative;
+            width: 100%;
+            max-width: 900px;
+            aspect-ratio: 16 / 9;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+            animation: zoomIn 0.3s ease-out;
+        }
+        
+        @keyframes zoomIn {
+            from {
+                transform: scale(0.8);
+                opacity: 0;
+            }
+            to {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+        
+        .video-modal-content iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+        
+        .video-close-btn {
+            position: absolute;
+            top: -40px;
+            right: 0;
+            background: white;
+            color: #333;
+            border: none;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            font-size: 28px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background 0.3s;
+            -webkit-tap-highlight-color: transparent;
+            touch-action: manipulation;
+            z-index: 1001;
+        }
+        
+        .video-close-btn:active {
+            background: #f0f0f0;
+            transform: scale(0.95);
+        }
+        
         /* Recipe Modal Styling */
         .recipe-modal {
             display: none;
@@ -649,6 +724,14 @@
     </div>
 </div>
 
+<!-- Video Player Modal -->
+<div id="videoModal" class="video-modal">
+    <div class="video-modal-content">
+        <button class="video-close-btn" onclick="closeVideoModal()">×</button>
+        <iframe id="videoPlayer" src="" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+    </div>
+</div>
+
 <script>
     // Display today's date and time
     function updateDateTime() {
@@ -803,7 +886,7 @@
         yogaVideos.forEach(video => {
             const thumbnailUrl = `https://img.youtube.com/vi/${video.youtubeId}/maxresdefault.jpg`;
             yogaGallery.innerHTML += `
-                <div class="yoga-video" onclick="openYoutubeVideo('${video.url}')">
+                <div class="yoga-video" onclick="openYoutubeVideo('${video.youtubeId}')">
                     <div class="yoga-thumbnail">
                         <img src="${thumbnailUrl}" alt="${video.title}" onerror="this.src='https://img.youtube.com/vi/${video.youtubeId}/0.jpg'">
                         <div class="yoga-play-button"></div>
@@ -813,9 +896,23 @@
         });
     }
     
-    function openYoutubeVideo(url) {
-        window.open(url, '_blank');
+    function openYoutubeVideo(youtubeId) {
+        const embedUrl = `https://www.youtube.com/embed/${youtubeId}?autoplay=1`;
+        document.getElementById('videoPlayer').src = embedUrl;
+        document.getElementById('videoModal').classList.add('active');
     }
+    
+    function closeVideoModal() {
+        document.getElementById('videoModal').classList.remove('active');
+        document.getElementById('videoPlayer').src = '';
+    }
+    
+    // Close video modal when clicking outside
+    document.getElementById('videoModal').addEventListener('click', function(e) {
+        if (e.target === this) {
+            closeVideoModal();
+        }
+    });
     
     // Add styles for h2 in tab-content
     const style = document.createElement('style');
