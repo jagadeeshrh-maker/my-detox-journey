@@ -310,6 +310,82 @@
             margin-bottom: 12px;
         }
         
+        /* Yoga Gallery Styling */
+        .yoga-gallery {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 16px;
+            padding: 16px;
+            flex: 1;
+            overflow-y: auto;
+            -webkit-overflow-scrolling: touch;
+            align-content: start;
+        }
+        
+        .yoga-video {
+            cursor: pointer;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+            -webkit-tap-highlight-color: transparent;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .yoga-video:active {
+            transform: scale(0.98);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+        }
+        
+        .yoga-thumbnail {
+            position: relative;
+            width: 100%;
+            padding-bottom: 56.25%;
+            background: #000;
+            overflow: hidden;
+        }
+        
+        .yoga-thumbnail img {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .yoga-play-button {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 60px;
+            height: 60px;
+            background: rgba(255, 0, 0, 0.8);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 3px solid white;
+            z-index: 2;
+        }
+        
+        .yoga-play-button::after {
+            content: '▶';
+            color: white;
+            font-size: 24px;
+            margin-left: 4px;
+        }
+        
+        .yoga-title {
+            padding: 12px 16px;
+            background: white;
+            color: #333;
+            font-size: 0.95em;
+            font-weight: 500;
+        }
+        
         /* Recipe Modal Styling */
         .recipe-modal {
             display: none;
@@ -479,7 +555,7 @@
     <div class="tabs">
         <button class="tab-btn active" data-tab="diet">Diet Plan</button>
         <button class="tab-btn" data-tab="medicine">Medicine</button>
-        <button class="tab-btn" data-tab="exercises">Exercises</button>
+        <button class="tab-btn" data-tab="yoga">Yoga</button>
         <button class="tab-btn" data-tab="notes">Notes</button>
     </div>
     
@@ -545,18 +621,10 @@
         <button id="resetMedicineBtn" class="reset-btn">Reset All</button>
     </div>
     
-    <!-- Exercises Tab -->
-    <div id="exercises" class="tab-content">
-        <div class="image-gallery">
-            <div class="gallery-item">
-                <img src="image_1.png" alt="Exercise 1">
-            </div>
-            <div class="gallery-item">
-                <img src="image_2.png" alt="Exercise 2">
-            </div>
-            <div class="gallery-item">
-                <img src="image_3.png" alt="Exercise 3">
-            </div>
+    <!-- Yoga Tab -->
+    <div id="yoga" class="tab-content">
+        <div class="yoga-gallery" id="yogaGallery">
+            <!-- YouTube video thumbnails will be loaded here -->
         </div>
     </div>
     
@@ -600,6 +668,7 @@
     let mealTimes = {};
     let notesData = {};
     let recipesData = {};
+    let yogaVideos = [];
     
     // Fetch Diet Data
     Promise.all([
@@ -607,19 +676,22 @@
         fetch('data/medicine.json').then(res => res.json()),
         fetch('data/notes.json').then(res => res.json()),
         fetch('data/exercises.json').then(res => res.json()),
-        fetch('data/recipes.json').then(res => res.json())
-    ]).then(([dietResponse, medicineResponse, notesResponse, exercisesResponse, recipesResponse]) => {
+        fetch('data/recipes.json').then(res => res.json()),
+        fetch('data/yoga.json').then(res => res.json())
+    ]).then(([dietResponse, medicineResponse, notesResponse, exercisesResponse, recipesResponse, yogaResponse]) => {
         dietData = dietResponse.dietPlan;
         mealTimes = dietResponse.mealTimes;
         medicineData = medicineResponse.medicineData;
         notesData = notesResponse.notes;
         recipesData = recipesResponse.recipes;
+        yogaVideos = yogaResponse.yogaVideos;
         
         // Initialize the app after data is loaded
         initializeApp();
         populateMedicineTable();
         populateNotesTab();
         populateExercisesGallery(exercisesResponse.exercises);
+        populateYogaGallery();
     }).catch(error => console.error('Error loading data:', error));
     
     function initializeApp() {
@@ -724,6 +796,27 @@
                     <img src="${exercise.image}" alt="${exercise.title}">
                 </div>`;
         });
+    }
+    
+    function populateYogaGallery() {
+        const yogaGallery = document.getElementById('yogaGallery');
+        yogaGallery.innerHTML = '';
+        
+        yogaVideos.forEach(video => {
+            const thumbnailUrl = `https://img.youtube.com/vi/${video.youtubeId}/maxresdefault.jpg`;
+            yogaGallery.innerHTML += `
+                <div class="yoga-video" onclick="openYoutubeVideo('${video.url}')">
+                    <div class="yoga-thumbnail">
+                        <img src="${thumbnailUrl}" alt="${video.title}" onerror="this.src='https://img.youtube.com/vi/${video.youtubeId}/0.jpg'">
+                        <div class="yoga-play-button"></div>
+                    </div>
+                    <div class="yoga-title">${video.title}</div>
+                </div>`;
+        });
+    }
+    
+    function openYoutubeVideo(url) {
+        window.open(url, '_blank');
     }
     
     // Add styles for h2 in tab-content

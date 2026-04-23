@@ -1,0 +1,28 @@
+{
+  "yogaVideos": [
+    {
+      "id": 1,
+      "title": "Yoga for Weight Loss",
+      "youtubeId": "K-IaBjWVowI",
+      "url": "https://www.youtube.com/watch?v=K-IaBjWVowI"
+    },
+    {
+      "id": 2,
+      "title": "Morning Yoga Routine",
+      "youtubeId": "Aox2AG72qDQ",
+      "url": "https://www.youtube.com/watch?v=Aox2AG72qDQ&t=34s"
+    },
+    {
+      "id": 3,
+      "title": "Detox Yoga Asanas",
+      "youtubeId": "wGotyWkxvqw",
+      "url": "https://www.youtube.com/watch?v=wGotyWkxvqw"
+    },
+    {
+      "id": 4,
+      "title": "Evening Relaxation Yoga",
+      "youtubeId": "ewHTJKOPIQA",
+      "url": "https://www.youtube.com/watch?v=ewHTJKOPIQA"
+    }
+  ]
+}
