@@ -408,12 +408,7 @@
             font-weight: 600;
         }
         
-        .yoga-phase-description {
-            padding: 0 16px 16px 16px;
-            color: #666;
-            font-size: 0.9em;
-            line-height: 1.5;
-        }
+
         
         /* Video Player Modal Styling */
         .video-modal {
@@ -917,7 +912,6 @@
             section.className = 'yoga-phase-section';
             section.innerHTML = `
                 <div class="yoga-phase-title">${video.phase}</div>
-                <div class="yoga-phase-description">${video.description}</div>
                 <div class="yoga-video" onclick="openYoutubeVideo('${video.youtubeId}')">
                     <div class="yoga-thumbnail">
                         <img data-src="https://img.youtube.com/vi/${video.youtubeId}/hqdefault.jpg" 
