@@ -344,6 +344,7 @@
             padding-bottom: 56.25%;
             background: #000;
             overflow: hidden;
+            min-height: 200px;
         }
         
         .yoga-thumbnail img {
@@ -353,6 +354,7 @@
             width: 100%;
             height: 100%;
             object-fit: cover;
+            min-height: 200px;
         }
         
         .yoga-play-button {
@@ -905,14 +907,15 @@
         yogaGallery.innerHTML = '';
         
         yogaVideos.forEach(video => {
-            const thumbnailUrl = `https://img.youtube.com/vi/${video.youtubeId}/maxresdefault.jpg`;
             yogaGallery.innerHTML += `
                 <div class="yoga-phase-section">
                     <div class="yoga-phase-title">${video.phase}</div>
                     <div class="yoga-phase-description">${video.description}</div>
                     <div class="yoga-video" onclick="openYoutubeVideo('${video.youtubeId}')">
                         <div class="yoga-thumbnail">
-                            <img src="${thumbnailUrl}" alt="${video.phase}" onerror="this.src='https://img.youtube.com/vi/${video.youtubeId}/0.jpg'">
+                            <img src="https://img.youtube.com/vi/${video.youtubeId}/sddefault.jpg" 
+                                 alt="${video.phase}" 
+                                 onerror="this.src='https://img.youtube.com/vi/${video.youtubeId}/hqdefault.jpg'; if(this.naturalWidth === 0) { this.src='https://img.youtube.com/vi/${video.youtubeId}/default.jpg'; }">
                             <div class="yoga-play-button"></div>
                         </div>
                     </div>
