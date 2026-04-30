@@ -341,20 +341,19 @@
         .yoga-thumbnail {
             position: relative;
             width: 100%;
-            padding-bottom: 56.25%;
+            height: auto;
             background: #000;
             overflow: hidden;
-            min-height: 200px;
+            display: block;
         }
         
         .yoga-thumbnail img {
-            position: absolute;
-            top: 0;
-            left: 0;
+            display: block;
             width: 100%;
-            height: 100%;
+            height: auto;
+            aspect-ratio: 16/9;
             object-fit: cover;
-            min-height: 200px;
+            background: #000;
         }
         
         .yoga-play-button {
@@ -370,7 +369,8 @@
             align-items: center;
             justify-content: center;
             border: 3px solid white;
-            z-index: 2;
+            z-index: 10;
+            pointer-events: none;
         }
         
         .yoga-play-button::after {
@@ -913,14 +913,27 @@
                     <div class="yoga-phase-description">${video.description}</div>
                     <div class="yoga-video" onclick="openYoutubeVideo('${video.youtubeId}')">
                         <div class="yoga-thumbnail">
-                            <img src="https://img.youtube.com/vi/${video.youtubeId}/sddefault.jpg" 
+                            <img id="thumb-${video.id}" 
+                                 src="https://img.youtube.com/vi/${video.youtubeId}/hqdefault.jpg" 
                                  alt="${video.phase}" 
-                                 onerror="this.src='https://img.youtube.com/vi/${video.youtubeId}/hqdefault.jpg'; if(this.naturalWidth === 0) { this.src='https://img.youtube.com/vi/${video.youtubeId}/default.jpg'; }">
+                                 loading="lazy"
+                                 onerror="loadYoutubeFallback(this, '${video.youtubeId}')">
                             <div class="yoga-play-button"></div>
                         </div>
                     </div>
                 </div>`;
         });
+    }
+    
+    function loadYoutubeFallback(img, youtubeId) {
+        const currentSrc = img.src;
+        if (currentSrc.includes('hqdefault')) {
+            img.src = `https://img.youtube.com/vi/${youtubeId}/mqdefault.jpg`;
+        } else if (currentSrc.includes('mqdefault')) {
+            img.src = `https://img.youtube.com/vi/${youtubeId}/default.jpg`;
+        } else {
+            img.style.background = '#cccccc';
+        }
     }
     
     function openYoutubeVideo(youtubeId) {
