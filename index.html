@@ -386,6 +386,27 @@
             font-weight: 500;
         }
         
+        .yoga-phase-section {
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+        
+        .yoga-phase-title {
+            padding: 16px 16px 8px 16px;
+            color: var(--primary);
+            font-size: 1.1em;
+            font-weight: 600;
+        }
+        
+        .yoga-phase-description {
+            padding: 0 16px 16px 16px;
+            color: #666;
+            font-size: 0.9em;
+            line-height: 1.5;
+        }
+        
         /* Video Player Modal Styling */
         .video-modal {
             display: none;
@@ -886,12 +907,15 @@
         yogaVideos.forEach(video => {
             const thumbnailUrl = `https://img.youtube.com/vi/${video.youtubeId}/maxresdefault.jpg`;
             yogaGallery.innerHTML += `
-                <div class="yoga-video" onclick="openYoutubeVideo('${video.youtubeId}')">
-                    <div class="yoga-thumbnail">
-                        <img src="${thumbnailUrl}" alt="${video.title}" onerror="this.src='https://img.youtube.com/vi/${video.youtubeId}/0.jpg'">
-                        <div class="yoga-play-button"></div>
+                <div class="yoga-phase-section">
+                    <div class="yoga-phase-title">${video.phase}</div>
+                    <div class="yoga-phase-description">${video.description}</div>
+                    <div class="yoga-video" onclick="openYoutubeVideo('${video.youtubeId}')">
+                        <div class="yoga-thumbnail">
+                            <img src="${thumbnailUrl}" alt="${video.phase}" onerror="this.src='https://img.youtube.com/vi/${video.youtubeId}/0.jpg'">
+                            <div class="yoga-play-button"></div>
+                        </div>
                     </div>
-                    <div class="yoga-title">${video.title}</div>
                 </div>`;
         });
     }

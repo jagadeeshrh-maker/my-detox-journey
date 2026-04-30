@@ -2,27 +2,45 @@
   "yogaVideos": [
     {
       "id": 1,
-      "title": "Yoga for Weight Loss",
+      "phase": "Before Period (PMS/Luteal Phase)",
+      "description": "These sessions focus on calming the nervous system, managing mood swings, and easing bloating.",
+      "youtubeId": "_ta-8gMYG2s",
+      "url": "https://www.youtube.com/watch?v=_ta-8gMYG2s"
+    },
+    {
+      "id": 2,
+      "phase": "During Period (Menstruation)",
+      "description": "Focus on gentle, grounded movements. Avoid intense core work, deep twists, and inversions (legs over head).",
+      "youtubeId": "WPBi5cgmsL0",
+      "url": "https://www.youtube.com/watch?v=WPBi5cgmsL0"
+    },
+    {
+      "id": 3,
+      "phase": "After Period (Follicular/Post-Menstrual Phase)",
+      "description": "This is when your energy increases, allowing for more dynamic movement.",
+      "youtubeId": "ETlbzlzyZw0",
+      "url": "https://www.youtube.com/watch?v=ETlbzlzyZw0"
+    },
+    {
+      "id": 4,
+      "phase": "Exercises To Increase Sperm Count",
+      "description": "Yoga for male infertility to improve reproductive health.",
       "youtubeId": "K-IaBjWVowI",
       "url": "https://www.youtube.com/watch?v=K-IaBjWVowI"
     },
     {
-      "id": 2,
-      "title": "Morning Yoga Routine",
-      "youtubeId": "Aox2AG72qDQ",
-      "url": "https://www.youtube.com/watch?v=Aox2AG72qDQ&t=34s"
+      "id": 5,
+      "phase": "30 Minute Deep Meditation Music",
+      "description": "Positive energy meditation with relaxing music for deep healing.",
+      "youtubeId": "YRJ6xoiRcpQ",
+      "url": "https://www.youtube.com/watch?v=YRJ6xoiRcpQ&list=RDYRJ6xoiRcpQ&start_radio=1"
     },
     {
-      "id": 3,
-      "title": "Detox Yoga Asanas",
-      "youtubeId": "wGotyWkxvqw",
-      "url": "https://www.youtube.com/watch?v=wGotyWkxvqw"
-    },
-    {
-      "id": 4,
-      "title": "Evening Relaxation Yoga",
-      "youtubeId": "ewHTJKOPIQA",
-      "url": "https://www.youtube.com/watch?v=ewHTJKOPIQA"
+      "id": 6,
+      "phase": "10 Minute Guided Breathing Meditation",
+      "description": "Calming guided breathing meditation for relaxation and mental clarity.",
+      "youtubeId": "VUjiXcfKBn8",
+      "url": "https://www.youtube.com/watch?v=VUjiXcfKBn8"
     }
   ]
 }
