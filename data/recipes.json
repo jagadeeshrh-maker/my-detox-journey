@@ -1,64 +1,116 @@
 {
   "recipes": {
-    "Ash gourd/bottle gourd juice (300ml)": {
-      "ingredients": ["1 cup ash gourd/bottle gourd, chopped", "Water"],
-      "steps": ["Wash and peel the gourd", "Chop into pieces", "Blend with 1 cup water", "Strain and serve fresh", "Avoid adding salt or sugar"]
+    "Cumin Water": {
+      "ingredients": ["1 tsp cumin seeds", "2 cups water"],
+      "steps": ["Boil water in a pot", "Add cumin seeds", "Simmer for 5-7 minutes", "Strain and drink warm"]
     },
-    "Vegetable poha - 1 medium bowl (add 50% veggies)": {
-      "ingredients": ["1 cup poha (flattened rice)", "1 medium onion, diced", "2 medium potatoes, diced", "1 cup mixed vegetables (peas, carrots, beans)", "1 tbsp oil", "1 tsp mustard seeds", "Curry leaves", "Salt to taste"],
-      "steps": ["Heat oil, add mustard seeds and curry leaves", "Add diced onions and potatoes, sauté until soft", "Add remaining vegetables, cook for 2-3 minutes", "Add poha, mix well and cook for 2 minutes", "Season with salt and serve hot"]
+    "Coriander Seeds Water": {
+      "ingredients": ["1 tsp coriander seeds", "2 cups water"],
+      "steps": ["Boil water in a pot", "Add coriander seeds", "Simmer for 5-7 minutes", "Strain and drink warm"]
     },
-    "Neer Dosa (2 no.) with veg in batter + Coconut mint/Tomato chutney": {
-      "ingredients": ["1 cup rice", "½ cup urad dal", "Salt to taste", "Oil for cooking", "Mixed vegetables (onion, carrot, capsicum)"],
-      "steps": ["Soak rice and urad dal for 4-6 hours", "Grind to a smooth paste without adding too much water", "Heat a non-stick pan/tawa, pour batter thinly", "Spread vegetables on top before it sets", "Cook until golden, flip and cook other side", "Serve with chutney"]
+    "Tulsi Water": {
+      "ingredients": ["4-5 fresh tulsi leaves", "2 cups water"],
+      "steps": ["Boil water in a pot", "Add tulsi leaves", "Simmer for 3-5 minutes", "Strain and drink warm"]
     },
-    "Green moong dosa (2 no.) + Tomato chutney (2 tsp)": {
-      "ingredients": ["1 cup green moong dal", "¼ cup rice", "Salt to taste", "Oil for cooking"],
-      "steps": ["Soak green moong and rice for 2-3 hours", "Grind to a smooth batter", "Heat pan, spread batter thinly", "Cook until edges are crispy", "Flip and cook other side", "Serve with tomato chutney"]
-    },
-    "Tomato soup (1 medium bowl) + Makhana chaat (1 plate)": {
-      "ingredients": ["4-5 tomatoes", "1 onion", "1 inch ginger", "2-3 cloves garlic", "Oil/ghee", "Salt and pepper", "Fresh coriander"],
-      "steps": ["Heat oil, add onion, ginger, garlic paste", "Add chopped tomatoes", "Cook until soft, blend into smooth puree", "Return to pot, add salt and pepper", "Cook for 2-3 minutes", "Garnish with coriander and serve hot"]
-    },
-    "Ginger & mint water (boil 1 inch ginger & 3-4 mint leaves)": {
-      "ingredients": ["1 inch ginger, sliced", "3-4 fresh mint leaves", "2 cups water", "Optional: 1 tsp lemon juice"],
-      "steps": ["Boil water in a pot", "Add sliced ginger and mint leaves", "Simmer for 5-7 minutes", "Strain and serve warm", "Can add lemon juice if desired"]
-    },
-    "Cinnamon water": {
-      "ingredients": ["1 small cinnamon stick (1 inch)", "2 cups water"],
-      "steps": ["Boil water in a pot", "Add cinnamon stick", "Simmer for 5 minutes", "Strain and drink warm before bed"]
-    },
-    "Bayleaf water": {
+    "Bayleaf Water": {
       "ingredients": ["2-3 bay leaves", "2 cups water"],
       "steps": ["Boil water", "Add bay leaves", "Simmer for 5 minutes", "Strain and serve warm"]
     },
-    "Chamomile tea Or Star anise water": {
-      "ingredients": ["1 chamomile tea bag or 1 tsp dried chamomile", "1 star anise", "1 cup water"],
-      "steps": ["Boil water", "Add chamomile tea bag or star anise", "Steep for 5 minutes", "Strain and serve warm"]
+    "Vitex Tea": {
+      "ingredients": ["1 tsp vitex berries (dried)", "1 cup water", "Optional: honey"],
+      "steps": ["Boil water", "Add vitex berries", "Steep for 5-7 minutes", "Strain and serve warm"]
     },
-    "Tender Coconut with malai (1 glass)": {
-      "ingredients": ["1 tender coconut", "Tender coconut water", "Tender coconut malai (soft flesh)"],
-      "steps": ["Cut tender coconut carefully", "Extract the water in a glass", "Scoop out the soft malai with a spoon", "Mix malai with the coconut water", "Consume fresh"]
+    "Vermicelli Upma": {
+      "ingredients": ["1 cup vermicelli", "1 onion, diced", "1 carrot, diced", "1/2 cup peas", "2 tbsp oil", "1 tsp mustard seeds", "Curry leaves", "Salt to taste"],
+      "steps": ["Heat oil, add mustard seeds and curry leaves", "Add diced onions, sauté until golden", "Add carrots and peas, cook for 2 minutes", "Dry roast vermicelli in a separate pan", "Add roasted vermicelli to vegetables", "Cook for 3-4 minutes, stirring continuously", "Season with salt and serve hot"]
     },
-    "Rajgira flakes (2 fist full) + Green/peppermint tea": {
-      "ingredients": ["2 fist full rajgira flakes", "1 cup water", "Green/peppermint tea (1 bag or 1 tsp leaves)"],
-      "steps": ["Boil water for tea", "Add green or peppermint leaves", "Steep for 3-4 minutes and strain", "Eat rajgira flakes separately as dry snack or with milk alternative"]
+    "Rava Idli": {
+      "ingredients": ["1 cup semolina (rava)", "1/2 cup yogurt", "1/4 cup grated coconut", "1 tbsp oil", "1 tsp mustard seeds", "1 green chili, chopped", "Curry leaves", "Salt to taste"],
+      "steps": ["Mix semolina with yogurt and let sit for 10 minutes", "Heat oil, add mustard seeds and curry leaves", "Add green chili, pour into semolina mixture", "Add coconut and salt, mix well", "Pour batter into greased idli moulds (3/4 full)", "Steam for 8-10 minutes", "Cool slightly and remove from moulds"]
     },
-    "Steamed vegetables (1 big bowl) using olive oil": {
-      "ingredients": ["Mixed vegetables (broccoli, carrot, zucchini, bell pepper)", "2 tbsp olive oil", "Salt and pepper", "Fresh herbs (optional)"],
-      "steps": ["Cut vegetables into uniform sizes", "Steam vegetables for 10-12 minutes until tender-crisp", "Transfer to a bowl", "Drizzle with olive oil, add salt and pepper", "Serve warm"]
+    "Millet Methi Pongal": {
+      "ingredients": ["1 cup foxtail millet", "1/4 cup moong dal", "2-3 tbsp ghee", "1 onion, diced", "1 inch ginger, chopped", "2 green chilies, chopped", "Fenugreek leaves (methi), chopped", "Peppercorns", "Cumin seeds", "Cashews", "Salt to taste"],
+      "steps": ["Roast millet and moong dal separately", "Cook in pressure cooker with 4 cups water (2 whistles)", "Heat ghee, add peppercorns and cumin seeds", "Add onions, ginger, green chilies, sauté well", "Add cashews and methi leaves", "Mix with cooked millet and dal", "Season with salt and serve hot"]
     },
-    "Lemon-Ginger water": {
-      "ingredients": ["½ inch ginger", "½ lemon", "1 glass water", "Optional: 1 tsp honey"],
-      "steps": ["Cut ginger into small pieces", "Boil water", "Add ginger pieces, simmer for 3-4 minutes", "Squeeze lemon juice", "Add honey if desired (optional)", "Strain and serve warm"]
+    "Wheat and Ragi Dosa": {
+      "ingredients": ["1/2 cup wheat flour", "1/2 cup ragi flour", "1/4 cup rice flour", "1/2 cup yogurt", "1 green chili, chopped", "1 tbsp ginger, chopped", "Salt to taste", "Oil for cooking"],
+      "steps": ["Mix all flours with yogurt to form a smooth batter", "Add green chili and ginger", "Season with salt", "Heat a non-stick pan, pour batter and spread thin", "Cook until edges turn golden", "Flip and cook the other side", "Serve hot with chutney"]
     },
-    "Parboiled rice and yellow moong khichdi + Buttermilk (add ½ tsp jeera powder)": {
-      "ingredients": ["½ cup parboiled rice", "½ cup yellow moong dal", "2 tbsp ghee", "1 inch ginger, minced", "½ tsp cumin seeds", "Turmeric powder", "Salt to taste"],
-      "steps": ["Wash rice and moong dal", "Heat ghee, add cumin seeds and ginger", "Add rice and moong dal, roast for 1 minute", "Add 2 cups water, turmeric, and salt", "Cook on high heat until boiling", "Reduce heat and simmer until cooked (15-20 mins)", "Serve with buttermilk flavored with jeera powder"]
+    "Masala Oats": {
+      "ingredients": ["1 cup rolled oats", "1 onion, diced", "1 carrot, diced", "1/2 cup peas", "2 tbsp oil", "1 tsp mustard seeds", "Curry leaves", "Green chili, chopped", "Salt and pepper to taste"],
+      "steps": ["Heat oil, add mustard seeds and curry leaves", "Add onions and green chili, sauté well", "Add carrots and peas, cook for 2 minutes", "Add oats and 2 cups water", "Cook stirring occasionally until water is absorbed", "Season with salt and pepper", "Serve hot"]
     },
-    "Roasted chana (1 fist) + Green/peppermint tea": {
-      "ingredients": ["1 cup dried chana", "Salt to taste"],
-      "steps": ["Soak chana overnight", "Boil until cooked", "Drain and dry on a cloth", "Roast in a pan on medium heat until crispy", "Add salt and store in an airtight container"]
+    "Broken Jowar Upma": {
+      "ingredients": ["1 cup broken jowar", "1 onion, diced", "1 carrot, diced", "1/2 cup peas", "2 tbsp oil", "1 tsp mustard seeds", "Curry leaves", "Green chili, chopped", "Salt to taste"],
+      "steps": ["Dry roast jowar until fragrant", "Heat oil, add mustard seeds and curry leaves", "Add onions, carrots, peas and green chili", "Add roasted jowar and 2 cups water", "Cook covered until jowar is tender", "Stir and break any lumps", "Season with salt and serve hot"]
+    },
+    "Brown Rice Veg Pulav": {
+      "ingredients": ["1 cup brown rice", "1 onion, sliced", "1 carrot, diced", "1/2 cup peas", "1/2 cup beans, chopped", "2 tbsp ghee", "2-3 bay leaves", "1 inch cinnamon stick", "4-5 cloves", "1 inch ginger, chopped", "Green chili, chopped", "Salt to taste"],
+      "steps": ["Heat ghee, add bay leaves, cinnamon, cloves", "Add onions and ginger, sauté until golden", "Add remaining vegetables, cook for 2 minutes", "Add rice and 2 cups water", "Cook covered until rice is tender", "Fluff with a fork and serve hot"]
+    },
+    "Foxtail Millet Porridge": {
+      "ingredients": ["1 cup foxtail millet", "3 cups water", "1/2 cup vegetables (carrot, peas)", "2 tbsp ghee", "Salt to taste", "Black pepper to taste"],
+      "steps": ["Rinse millet thoroughly", "Heat ghee, add vegetables and cook for 1 minute", "Add millet and roast for 2 minutes", "Add 3 cups water", "Cook covered until millet becomes soft and porridge-like", "Season with salt and pepper", "Stir well and serve hot"]
+    },
+    "Unpolished Rice & Okra Sabzi": {
+      "ingredients": ["1 cup unpolished rice", "200g okra (lady finger)", "1 onion, diced", "2 tbsp oil", "1 tsp mustard seeds", "1/2 tsp cumin seeds", "Green chili, chopped", "Turmeric powder", "Salt to taste"],
+      "steps": ["Cook rice in water until soft", "Cut okra into pieces, sprinkle salt and keep aside", "Heat oil, add mustard and cumin seeds", "Add onion, ginger, and green chili", "Add okra and cook without covering (to avoid sliminess)", "Add turmeric powder and salt", "Cook for 5-7 minutes until okra is tender", "Mix with cooked rice and serve"]
+    },
+    "Whole Moong Dal & Quinoa": {
+      "ingredients": ["1/2 cup whole moong dal", "1/2 cup quinoa", "1 onion, diced", "1 carrot, diced", "2 tbsp ghee", "Salt to taste", "Pepper to taste"],
+      "steps": ["Soak moong dal and quinoa for 30 minutes", "Heat ghee, sauté onions and carrots", "Add soaked moong dal and quinoa", "Add 3 cups water", "Cook covered until both are tender (15-20 minutes)", "Season with salt and pepper", "Stir well and serve hot"]
+    },
+    "Ragi Ball & Agathi Bhaji": {
+      "ingredients": ["1 cup ragi flour", "3 cups water", "200g agathi leaves (drumstick leaves), chopped", "1 onion, diced", "2 tbsp oil", "1 tsp mustard seeds", "Green chili, chopped", "Salt to taste"],
+      "steps": ["Boil water with salt", "Slowly add ragi flour, stirring to avoid lumps", "Cook until thick (5-7 minutes)", "Shape into balls and place on a plate", "Heat oil, add mustard seeds and curry leaves", "Add onion, green chili, and agathi leaves", "Cook for 3-4 minutes until leaves are tender", "Serve ragi balls with agathi bhaji"]
+    },
+    "Broken Wheat Daliya": {
+      "ingredients": ["1 cup broken wheat", "1 onion, diced", "1 carrot, diced", "1/2 cup peas", "2 tbsp ghee", "1 tsp cumin seeds", "Green chili, chopped", "Salt to taste"],
+      "steps": ["Heat ghee, add cumin seeds and green chili", "Add onions and sauté until soft", "Add carrots and peas, cook for 2 minutes", "Add broken wheat and 2.5 cups water", "Cook covered until wheat is tender and water is absorbed", "Season with salt", "Stir well and serve hot"]
+    },
+    "Lauki Moong Dal Cheela": {
+      "ingredients": ["1 cup moong dal flour", "250g bottle gourd (lauki), grated", "1 onion, finely chopped", "1 green chili, chopped", "1 inch ginger, chopped", "Oil for cooking", "Salt to taste"],
+      "steps": ["Make a batter with moong dal flour and water (thin consistency)", "Add grated lauki, onion, green chili, and ginger", "Season with salt", "Heat oil on a non-stick pan", "Pour batter and spread to make a thin crepe", "Cook until golden on both sides", "Serve hot with chutney"]
+    },
+    "Tomato Soup & Veggie Appe": {
+      "ingredients": ["4-5 tomatoes", "1 onion, diced", "1 carrot, diced", "1 inch ginger, chopped", "Oil", "Salt and pepper", "For appe: 1 cup rice flour, mixed vegetables, oil"],
+      "steps": ["For soup: Heat oil, sauté onion and ginger", "Add tomatoes and cook until soft", "Blend into smooth paste, strain and cook", "For appe: Make a thick batter with rice flour", "Heat appe mould, add oil, pour batter", "Add mixed vegetables, cook until golden", "Serve soup hot with veggie appe"]
+    },
+    "Drumstick Soup": {
+      "ingredients": ["200g drumstick (moringa), cut into pieces", "1 onion, diced", "3-4 mushrooms, sliced", "1 inch ginger, chopped", "2 tbsp oil", "Salt and pepper to taste", "Fresh coriander"],
+      "steps": ["Heat oil, sauté onion and ginger until golden", "Add mushrooms and cook for 2 minutes", "Add drumstick pieces and 4 cups water", "Cook until drumstick is tender (10-12 minutes)", "Crush slightly to release flavors", "Season with salt and pepper", "Garnish with coriander and serve hot"]
+    },
+    "Boiled Chana & Veg Chat": {
+      "ingredients": ["1 cup dried chickpeas (chana), soaked and boiled", "1 cucumber, diced", "1 tomato, diced", "1 onion, diced", "1 green chili, chopped", "Lemon juice", "Chaat masala", "Salt to taste", "Fresh coriander"],
+      "steps": ["Boil soaked chickpeas until soft", "In a bowl, mix boiled chana with diced vegetables", "Add fresh coriander and green chili", "Season with lemon juice, chaat masala, and salt", "Mix well and serve immediately"]
+    },
+    "Mixed Nuts and Roasted Seeds": {
+      "ingredients": ["1/2 cup almonds", "1/2 cup cashews", "1/2 cup sunflower seeds", "1/2 cup pumpkin seeds", "2 tbsp sesame seeds", "Salt to taste"],
+      "steps": ["Dry roast almonds and cashews in a pan for 2-3 minutes", "In another pan, dry roast sunflower seeds for 2 minutes", "Roast pumpkin seeds and sesame seeds separately", "Cool all ingredients completely", "Mix together and store in an airtight container", "Portion as needed for snacking"]
+    },
+    "Roasted Makhana": {
+      "ingredients": ["1 cup makhana (fox nuts)", "2 tbsp ghee", "Salt to taste", "Optional: mild spice powder"],
+      "steps": ["Heat ghee in a pan on medium heat", "Add makhana gradually", "Stir continuously to prevent burning", "Roast until golden and crispy (5-7 minutes)", "Season with salt and spices if desired", "Spread on paper towel to cool", "Store in airtight container"]
+    },
+    "Roasted Peanut": {
+      "ingredients": ["1 cup raw peanuts (with skin)", "Salt to taste"],
+      "steps": ["Spread peanuts on a baking tray", "Roast in oven at 350°F for 10-12 minutes, stirring occasionally", "Or dry roast in a pan for 8-10 minutes on medium heat", "Cool completely", "Rub between hands to remove skin (optional)", "Season with salt", "Store in airtight container"]
+    },
+    "Boiled Eggs": {
+      "ingredients": ["Eggs"],
+      "steps": ["Bring water to boil in a pot", "Gently place eggs in boiling water", "For soft-boiled: 4-5 minutes", "For medium-boiled: 7-8 minutes", "For hard-boiled: 10-12 minutes", "Transfer to ice water immediately", "Peel and enjoy"]
+    },
+    "Puffed Rice with Roasted Peanuts": {
+      "ingredients": ["1 cup puffed rice", "1/2 cup roasted peanuts", "1 onion, finely diced", "1 green chili, chopped", "Lemon juice", "Salt to taste", "Fresh coriander"],
+      "steps": ["In a bowl, mix puffed rice and roasted peanuts", "Add finely diced onion and green chili", "Season with lemon juice and salt", "Mix thoroughly", "Garnish with coriander", "Serve immediately"]
+    },
+    "Baked Sweet Potato": {
+      "ingredients": ["Sweet potatoes"],
+      "steps": ["Wash sweet potatoes thoroughly", "Prick with fork to allow steam to escape", "Bake in oven at 400°F for 40-50 minutes", "Or microwave for 8-10 minutes", "Check with fork if soft inside", "Cut in half, scoop out flesh", "Season with salt and enjoy"]
+    },
+    "Lady Finger (Okra)": {
+      "ingredients": ["200g okra (lady finger)", "1 onion, diced", "1 tomato, diced", "1 green chili, chopped", "2 tbsp oil", "1 tsp mustard seeds", "Turmeric powder", "Chili powder", "Salt to taste"],
+      "steps": ["Wash okra and pat dry thoroughly", "Cut into medium pieces", "Heat oil, add mustard seeds and green chili", "Add onion, dice into fine pieces", "Add okra pieces carefully", "Add turmeric and chili powder", "Cook on high heat without covering (to prevent sliminess)", "Add tomato and cook for 5-7 minutes", "Season with salt", "Serve hot"]
     }
   }
 }

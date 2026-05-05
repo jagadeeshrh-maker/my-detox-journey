@@ -591,6 +591,30 @@
             margin-bottom: 8px;
         }
         
+        .recipe-link-section {
+            text-align: center;
+            padding-top: 16px;
+            border-top: 1px solid #e0e0e0;
+            margin-top: 24px;
+        }
+        
+        .recipe-link {
+            display: inline-block;
+            background: var(--primary);
+            color: white;
+            padding: 12px 24px;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: background 0.3s, transform 0.2s;
+            margin: 0;
+        }
+        
+        .recipe-link:active {
+            transform: scale(0.98);
+            background: #1b5e20;
+        }
+        
         /* Clickable meal items */
         .meal-name {
             flex: 1;
@@ -661,15 +685,19 @@
     <!-- Diet Plan Tab -->
     <div id="diet" class="tab-content active">
         <div class="sub-tabs">
-            <button class="sub-tab-btn active" data-subtab="today">Today</button>
-            <button class="sub-tab-btn" data-subtab="tomorrow">Tomorrow</button>
+            <button class="sub-tab-btn" data-subtab="monday" data-day="Monday">Mo</button>
+            <button class="sub-tab-btn" data-subtab="tuesday" data-day="Tuesday">Tu</button>
+            <button class="sub-tab-btn" data-subtab="wednesday" data-day="Wednesday">We</button>
+            <button class="sub-tab-btn" data-subtab="thursday" data-day="Thursday">Th</button>
+            <button class="sub-tab-btn" data-subtab="friday" data-day="Friday">Fr</button>
+            <button class="sub-tab-btn" data-subtab="saturday" data-day="Saturday">Sa</button>
+            <button class="sub-tab-btn" data-subtab="sunday" data-day="Sunday">Su</button>
         </div>
         
-        <!-- Today's Schedule -->
-        <div id="today" class="sub-tab-content active">
-            <h2 id="currentDay">Today's Schedule</h2>
-            <div id="schedule"></div>
-
+        <!-- Monday's Schedule -->
+        <div id="monday" class="sub-tab-content">
+            <h2 id="mon-day">Monday</h2>
+            <div id="mon-schedule" class="schedule-container"></div>
             <div class="points">
                 <strong>💡 Points to Remember:</strong>
                 <ul>
@@ -680,15 +708,13 @@
                     <li>Take foot massage before sleep.</li>
                 </ul>
             </div>
-            
-            <button id="resetBtn" class="reset-btn">Reset All</button>
+            <button class="reset-btn" onclick="resetDay('monday')">Reset All</button>
         </div>
         
-        <!-- Tomorrow's Schedule -->
-        <div id="tomorrow" class="sub-tab-content">
-            <h2 id="tomorrowDay">Tomorrow's Schedule</h2>
-            <div id="tomorrowSchedule"></div>
-
+        <!-- Tuesday's Schedule -->
+        <div id="tuesday" class="sub-tab-content">
+            <h2 id="tue-day">Tuesday</h2>
+            <div id="tue-schedule" class="schedule-container"></div>
             <div class="points">
                 <strong>💡 Points to Remember:</strong>
                 <ul>
@@ -699,8 +725,92 @@
                     <li>Take foot massage before sleep.</li>
                 </ul>
             </div>
-            
-            <button id="resetTomorrowBtn" class="reset-btn">Reset All</button>
+            <button class="reset-btn" onclick="resetDay('tuesday')">Reset All</button>
+        </div>
+        
+        <!-- Wednesday's Schedule -->
+        <div id="wednesday" class="sub-tab-content">
+            <h2 id="wed-day">Wednesday</h2>
+            <div id="wed-schedule" class="schedule-container"></div>
+            <div class="points">
+                <strong>💡 Points to Remember:</strong>
+                <ul>
+                    <li>Avoid all dairy and non-veg.</li>
+                    <li>Drink min 2.5L of water daily.</li>
+                    <li>Finish dinner before 7:30 PM.</li>
+                    <li>Take Bath before sleep.</li>
+                    <li>Take foot massage before sleep.</li>
+                </ul>
+            </div>
+            <button class="reset-btn" onclick="resetDay('wednesday')">Reset All</button>
+        </div>
+        
+        <!-- Thursday's Schedule -->
+        <div id="thursday" class="sub-tab-content">
+            <h2 id="thu-day">Thursday</h2>
+            <div id="thu-schedule" class="schedule-container"></div>
+            <div class="points">
+                <strong>💡 Points to Remember:</strong>
+                <ul>
+                    <li>Avoid all dairy and non-veg.</li>
+                    <li>Drink min 2.5L of water daily.</li>
+                    <li>Finish dinner before 7:30 PM.</li>
+                    <li>Take Bath before sleep.</li>
+                    <li>Take foot massage before sleep.</li>
+                </ul>
+            </div>
+            <button class="reset-btn" onclick="resetDay('thursday')">Reset All</button>
+        </div>
+        
+        <!-- Friday's Schedule -->
+        <div id="friday" class="sub-tab-content">
+            <h2 id="fri-day">Friday</h2>
+            <div id="fri-schedule" class="schedule-container"></div>
+            <div class="points">
+                <strong>💡 Points to Remember:</strong>
+                <ul>
+                    <li>Avoid all dairy and non-veg.</li>
+                    <li>Drink min 2.5L of water daily.</li>
+                    <li>Finish dinner before 7:30 PM.</li>
+                    <li>Take Bath before sleep.</li>
+                    <li>Take foot massage before sleep.</li>
+                </ul>
+            </div>
+            <button class="reset-btn" onclick="resetDay('friday')">Reset All</button>
+        </div>
+        
+        <!-- Saturday's Schedule -->
+        <div id="saturday" class="sub-tab-content">
+            <h2 id="sat-day">Saturday</h2>
+            <div id="sat-schedule" class="schedule-container"></div>
+            <div class="points">
+                <strong>💡 Points to Remember:</strong>
+                <ul>
+                    <li>Avoid all dairy and non-veg.</li>
+                    <li>Drink min 2.5L of water daily.</li>
+                    <li>Finish dinner before 7:30 PM.</li>
+                    <li>Take Bath before sleep.</li>
+                    <li>Take foot massage before sleep.</li>
+                </ul>
+            </div>
+            <button class="reset-btn" onclick="resetDay('saturday')">Reset All</button>
+        </div>
+        
+        <!-- Sunday's Schedule -->
+        <div id="sunday" class="sub-tab-content">
+            <h2 id="sun-day">Sunday</h2>
+            <div id="sun-schedule" class="schedule-container"></div>
+            <div class="points">
+                <strong>💡 Points to Remember:</strong>
+                <ul>
+                    <li>Avoid all dairy and non-veg.</li>
+                    <li>Drink min 2.5L of water daily.</li>
+                    <li>Finish dinner before 7:30 PM.</li>
+                    <li>Take Bath before sleep.</li>
+                    <li>Take foot massage before sleep.</li>
+                </ul>
+            </div>
+            <button class="reset-btn" onclick="resetDay('sunday')">Reset All</button>
         </div>
     </div>
     
@@ -801,49 +911,75 @@
     
     function initializeApp() {
         const today = new Date();
-        const tomorrow = new Date(today);
-        tomorrow.setDate(tomorrow.getDate() + 1);
-        
         const days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+        const dayAbbreviations = {
+            'Sunday': 'sunday',
+            'Monday': 'monday',
+            'Tuesday': 'tuesday',
+            'Wednesday': 'wednesday',
+            'Thursday': 'thursday',
+            'Friday': 'friday',
+            'Saturday': 'saturday'
+        };
+        
         const currentDay = days[today.getDay()];
-        const nextDay = days[tomorrow.getDay()];
+        const currentDayId = dayAbbreviations[currentDay];
         
-        document.getElementById('currentDay').innerText = "Today: " + currentDay;
-        document.getElementById('tomorrowDay').innerText = "Tomorrow: " + nextDay;
-
-        // Populate today's schedule
-        const scheduleDiv = document.getElementById('schedule');
-        const todayMeals = dietData[currentDay] || dietData["Monday"];
-        for (const [time, key] of Object.entries(mealTimes)) {
-            const mealName = todayMeals[key];
-            const hasRecipe = recipesData.hasOwnProperty(mealName);
-            const mealClass = hasRecipe ? 'has-recipe' : 'no-recipe';
-            const onClickAttr = hasRecipe ? `onclick="showRecipe('${mealName.replace(/'/g, "\\'").replace(/"/g, '&quot;')}')"` : '';
+        // Populate all 7 days
+        days.forEach(day => {
+            const dayId = dayAbbreviations[day];
+            const scheduleContainerId = `${dayId}-schedule`;
+            const dayHeaderId = `${dayId}-day`;
             
-            scheduleDiv.innerHTML += `
-                <div class="meal-slot">
-                    <input type="checkbox" class="check-box">
-                    <span class="time">${time}</span>
-                    <span class="meal-name ${mealClass}" ${onClickAttr}>${mealName}</span>
-                </div>`;
-        }
+            // Set day header
+            document.getElementById(dayHeaderId).innerText = day;
+            
+            // Get meals for this day
+            const scheduleDiv = document.getElementById(scheduleContainerId);
+            const dayMeals = dietData[day] || dietData["Monday"];
+            
+            // Clear any existing content
+            scheduleDiv.innerHTML = '';
+            
+            // Populate meal slots
+            for (const [time, key] of Object.entries(mealTimes)) {
+                const mealName = dayMeals[key];
+                const hasRecipe = recipesData.hasOwnProperty(mealName);
+                const mealClass = hasRecipe ? 'has-recipe' : 'no-recipe';
+                const onClickAttr = hasRecipe ? `onclick="showRecipe('${mealName.replace(/'/g, "\\'").replace(/"/g, '&quot;')}')"` : '';
+                
+                scheduleDiv.innerHTML += `
+                    <div class="meal-slot">
+                        <input type="checkbox" class="check-box" data-day="${day}">
+                        <span class="time">${time}</span>
+                        <span class="meal-name ${mealClass}" ${onClickAttr}>${mealName}</span>
+                    </div>`;
+            }
+        });
         
-        // Populate tomorrow's schedule
-        const tomorrowScheduleDiv = document.getElementById('tomorrowSchedule');
-        const tomorrowMeals = dietData[nextDay] || dietData["Monday"];
-        for (const [time, key] of Object.entries(mealTimes)) {
-            const mealName = tomorrowMeals[key];
-            const hasRecipe = recipesData.hasOwnProperty(mealName);
-            const mealClass = hasRecipe ? 'has-recipe' : 'no-recipe';
-            const onClickAttr = hasRecipe ? `onclick="showRecipe('${mealName.replace(/'/g, "\\'").replace(/"/g, '&quot;')}')"` : '';
-            
-            tomorrowScheduleDiv.innerHTML += `
-                <div class="meal-slot">
-                    <input type="checkbox" class="check-box">
-                    <span class="time">${time}</span>
-                    <span class="meal-name ${mealClass}" ${onClickAttr}>${mealName}</span>
-                </div>`;
+        // Set current day as active
+        document.querySelectorAll('.sub-tab-btn').forEach(btn => {
+            btn.classList.remove('active');
+        });
+        document.querySelectorAll('.sub-tab-content').forEach(content => {
+            content.classList.remove('active');
+        });
+        
+        const currentDayBtn = document.querySelector(`[data-subtab="${currentDayId}"]`);
+        if (currentDayBtn) {
+            currentDayBtn.classList.add('active');
         }
+        const currentDayContent = document.getElementById(currentDayId);
+        if (currentDayContent) {
+            currentDayContent.classList.add('active');
+        }
+    }
+    
+    function resetDay(dayId) {
+        const checkboxes = document.querySelectorAll(`#${dayId} .check-box`);
+        checkboxes.forEach(checkbox => {
+            checkbox.checked = false;
+        });
     }
     
     function populateMedicineTable() {
@@ -1061,6 +1197,10 @@
                 recipeHTML += `<li>${step}</li>`;
             });
             recipeHTML += '</ul></div>';
+        }
+        
+        if (recipe.link) {
+            recipeHTML += `<div class="recipe-section recipe-link-section"><a href="${recipe.link}" target="_blank" class="recipe-link">View Full Recipe 🔗</a></div>`;
         }
         
         document.getElementById('recipeTitle').textContent = mealName;
