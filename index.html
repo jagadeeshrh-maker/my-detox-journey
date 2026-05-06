@@ -888,13 +888,19 @@
     let yogaVideos = [];
     
     // Fetch Diet Data
+    const cacheBreaker = new Date().getTime();
     Promise.all([
-        fetch('data/diet.json').then(res => res.json()),
-        fetch('data/medicine.json').then(res => res.json()),
-        fetch('data/notes.json').then(res => res.json()),
-        fetch('data/recipes.json').then(res => res.json()),
-        fetch('data/yoga.json').then(res => res.json())
+        fetch(`data/diet.json?v=${cacheBreaker}`).then(res => res.json()),
+        fetch(`data/medicine.json?v=${cacheBreaker}`).then(res => res.json()),
+        fetch(`data/notes.json?v=${cacheBreaker}`).then(res => res.json()),
+        fetch(`data/recipes.json?v=${cacheBreaker}`).then(res => res.json()),
+        fetch(`data/yoga.json?v=${cacheBreaker}`).then(res => res.json())
     ]).then(([dietResponse, medicineResponse, notesResponse, recipesResponse, yogaResponse]) => {
+        console.log('=== DATA LOADING ===');
+        console.log('notesResponse:', notesResponse);
+        console.log('notesResponse.notes:', notesResponse.notes);
+        console.log('Type of notesResponse.notes:', typeof notesResponse.notes);
+        
         dietData = dietResponse.dietPlan;
         mealTimes = dietResponse.mealTimes;
         medicineData = medicineResponse.medicineData;
@@ -902,76 +908,115 @@
         recipesData = recipesResponse.recipes;
         yogaVideos = yogaResponse.yogaVideos;
         
+        console.log('=== AFTER ASSIGNMENT ===');
+        console.log('notesData:', notesData);
+        console.log('notesData.shoppingGuide:', notesData ? notesData.shoppingGuide : 'notesData is null/undefined');
+        
         // Initialize the app after data is loaded
         initializeApp();
         populateMedicineTable();
         populateNotesTab();
         populateYogaGallery();
-    }).catch(error => console.error('Error loading data:', error));
+    }).catch(error => {
+        console.error('Error loading data:', error);
+        alert('Error loading app data. Check browser console for details.');
+    });
     
     function initializeApp() {
-        const today = new Date();
-        const days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
-        const dayAbbreviations = {
-            'Sunday': 'sunday',
-            'Monday': 'monday',
-            'Tuesday': 'tuesday',
-            'Wednesday': 'wednesday',
-            'Thursday': 'thursday',
-            'Friday': 'friday',
-            'Saturday': 'saturday'
-        };
-        
-        const currentDay = days[today.getDay()];
-        const currentDayId = dayAbbreviations[currentDay];
-        
-        // Populate all 7 days
-        days.forEach(day => {
-            const dayId = dayAbbreviations[day];
-            const scheduleContainerId = `${dayId}-schedule`;
-            const dayHeaderId = `${dayId}-day`;
+        try {
+            console.log('initializeApp called');
+            const today = new Date();
+            const days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
             
-            // Set day header
-            document.getElementById(dayHeaderId).innerText = day;
+            // Abbreviations for element IDs (header and schedule containers)
+            const dayAbbreviations = {
+                'Sunday': 'sun',
+                'Monday': 'mon',
+                'Tuesday': 'tue',
+                'Wednesday': 'wed',
+                'Thursday': 'thu',
+                'Friday': 'fri',
+                'Saturday': 'sat'
+            };
             
-            // Get meals for this day
-            const scheduleDiv = document.getElementById(scheduleContainerId);
-            const dayMeals = dietData[day] || dietData["Monday"];
+            // For sub-tab-content IDs and data-subtab attributes (use full lower-case names)
+            const dayIds = {
+                'Sunday': 'sunday',
+                'Monday': 'monday',
+                'Tuesday': 'tuesday',
+                'Wednesday': 'wednesday',
+                'Thursday': 'thursday',
+                'Friday': 'friday',
+                'Saturday': 'saturday'
+            };
             
-            // Clear any existing content
-            scheduleDiv.innerHTML = '';
+            const currentDay = days[today.getDay()];
+            const currentDayId = dayIds[currentDay];
             
-            // Populate meal slots
-            for (const [time, key] of Object.entries(mealTimes)) {
-                const mealName = dayMeals[key];
-                const hasRecipe = recipesData.hasOwnProperty(mealName);
-                const mealClass = hasRecipe ? 'has-recipe' : 'no-recipe';
-                const onClickAttr = hasRecipe ? `onclick="showRecipe('${mealName.replace(/'/g, "\\'").replace(/"/g, '&quot;')}')"` : '';
+            console.log('Current day:', currentDay, 'ID:', currentDayId);
+            
+            // Populate all 7 days
+            days.forEach(day => {
+                const abbr = dayAbbreviations[day];
+                const scheduleContainerId = `${abbr}-schedule`;
+                const dayHeaderId = `${abbr}-day`;
                 
-                scheduleDiv.innerHTML += `
-                    <div class="meal-slot">
-                        <input type="checkbox" class="check-box" data-day="${day}">
-                        <span class="time">${time}</span>
-                        <span class="meal-name ${mealClass}" ${onClickAttr}>${mealName}</span>
-                    </div>`;
+                // Set day header
+                const headerElement = document.getElementById(dayHeaderId);
+                if (headerElement) {
+                    headerElement.innerText = day;
+                }
+                
+                // Get meals for this day
+                const scheduleDiv = document.getElementById(scheduleContainerId);
+                if (!scheduleDiv) {
+                    console.warn(`Schedule container not found: ${scheduleContainerId}`);
+                    return;
+                }
+                
+                const dayMeals = dietData[day] || dietData["Monday"];
+                
+                console.log(`Populating ${day}:`, dayMeals);
+                
+                // Clear any existing content
+                scheduleDiv.innerHTML = '';
+                
+                // Populate meal slots
+                for (const [time, key] of Object.entries(mealTimes)) {
+                    const mealName = dayMeals[key];
+                    const hasRecipe = recipesData.hasOwnProperty(mealName);
+                    const mealClass = hasRecipe ? 'has-recipe' : 'no-recipe';
+                    const onClickAttr = hasRecipe ? `onclick="showRecipe('${mealName.replace(/'/g, "\\'").replace(/"/g, '&quot;')}')"` : '';
+                    
+                    scheduleDiv.innerHTML += `
+                        <div class="meal-slot">
+                            <input type="checkbox" class="check-box" data-day="${day}">
+                            <span class="time">${time}</span>
+                            <span class="meal-name ${mealClass}" ${onClickAttr}>${mealName}</span>
+                        </div>`;
+                }
+            });
+            
+            // Set current day as active
+            document.querySelectorAll('.sub-tab-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            document.querySelectorAll('.sub-tab-content').forEach(content => {
+                content.classList.remove('active');
+            });
+            
+            const currentDayBtn = document.querySelector(`[data-subtab="${currentDayId}"]`);
+            if (currentDayBtn) {
+                currentDayBtn.classList.add('active');
             }
-        });
-        
-        // Set current day as active
-        document.querySelectorAll('.sub-tab-btn').forEach(btn => {
-            btn.classList.remove('active');
-        });
-        document.querySelectorAll('.sub-tab-content').forEach(content => {
-            content.classList.remove('active');
-        });
-        
-        const currentDayBtn = document.querySelector(`[data-subtab="${currentDayId}"]`);
-        if (currentDayBtn) {
-            currentDayBtn.classList.add('active');
-        }
-        const currentDayContent = document.getElementById(currentDayId);
-        if (currentDayContent) {
-            currentDayContent.classList.add('active');
+            const currentDayContent = document.getElementById(currentDayId);
+            if (currentDayContent) {
+                currentDayContent.classList.add('active');
+            }
+            console.log('initializeApp completed successfully');
+        } catch (error) {
+            console.error('Error in initializeApp:', error);
+            alert('Error initializing app. Check console for details.');
         }
     }
     
@@ -995,36 +1040,65 @@
     }
     
     function populateNotesTab() {
-        const notesContent = document.querySelector('.notes-content');
-        let html = '';
-        
-        html += '<h3>POINTS TO REMEMBER</h3><ul>';
-        notesData.pointsToRemember.forEach(point => {
-            html += `<li>${point}</li>`;
-        });
-        html += '</ul>';
-        
-        html += '<h3>MUNCHING OPTIONS FOR CRAVINGS</h3><ul>';
-        notesData.munchingOptions.forEach(option => {
-            html += `<li>${option}</li>`;
-        });
-        html += '</ul>';
-        
-        html += '<h3>SLEEP ROUTINE</h3><p><em>(Strictly follow an early to bed and early to wake up schedule)</em></p><ul>';
-        notesData.sleepRoutine.forEach(item => {
-            html += `<li>${item}</li>`;
-        });
-        html += '</ul>';
-        
-        html += '<h3>YOGA CLASS</h3><ul>';
-        notesData.yogaClass.forEach(item => {
-            html += `<li>${item}</li>`;
-        });
-        html += '</ul>';
-        
-        html += `<p style="text-align: center; margin-top: 20px; color: var(--primary); font-weight: 600;">${notesData.website}</p>`;
-        
-        notesContent.innerHTML = html;
+        try {
+            const notesContent = document.querySelector('.notes-content');
+            let html = '';
+            
+            console.log('populateNotesTab called');
+            console.log('notesData:', notesData);
+            
+            // Shopping Guide Section
+            if (notesData && notesData.shoppingGuide) {
+                console.log('Rendering shopping guide');
+                html += '<h3 style="margin-top: 0;">1. Grains & Pantry Staples (Dry Goods)</h3><ul>';
+                notesData.shoppingGuide.grainsPantry.forEach(item => {
+                    html += `<li>${item}</li>`;
+                });
+                html += '</ul>';
+                
+                html += '<h3>2. Proteins (Dals & Legumes)</h3><ul>';
+                notesData.shoppingGuide.proteinsDals.forEach(item => {
+                    html += `<li>${item}</li>`;
+                });
+                html += '</ul>';
+                
+                html += '<h3>3. Fresh Vegetables (Weekly)</h3><ul>';
+                notesData.shoppingGuide.freshVegetables.forEach(item => {
+                    html += `<li>${item}</li>`;
+                });
+                html += '</ul>';
+                
+                html += '<h3>4. Seasonal Fruits</h3><ul>';
+                notesData.shoppingGuide.seasonalFruits.forEach(item => {
+                    html += `<li>${item}</li>`;
+                });
+                html += '</ul>';
+                
+                html += '<h3>5. Spices & Fertility Herbs</h3><ul>';
+                notesData.shoppingGuide.spicesHerbs.forEach(item => {
+                    html += `<li>${item}</li>`;
+                });
+                html += '</ul>';
+                
+                html += '<h3>6. Dairy & Fats</h3><ul>';
+                notesData.shoppingGuide.dairyFats.forEach(item => {
+                    html += `<li>${item}</li>`;
+                });
+                html += '</ul>';
+            } else {
+                console.warn('shoppingGuide not found in notesData');
+                html = '<p>Shopping guide data not available</p>';
+            }
+            
+            notesContent.innerHTML = html;
+            console.log('Notes tab populated successfully');
+        } catch (error) {
+            console.error('Error in populateNotesTab:', error);
+            const notesContent = document.querySelector('.notes-content');
+            if (notesContent) {
+                notesContent.innerHTML = '<p style="color: red;">Error loading notes. Check console for details.</p>';
+            }
+        }
     }
     
     function populateExercisesGallery(exercises) {
@@ -1044,20 +1118,18 @@
         yogaGallery.innerHTML = '';
         
         yogaVideos.forEach(video => {
-            const section = document.createElement('div');
-            section.className = 'yoga-phase-section';
-            section.innerHTML = `
-                <div class="yoga-phase-title">${video.phase}</div>
-                <div class="yoga-video" onclick="openYoutubeVideo('${video.youtubeId}')">
-                    <div class="yoga-thumbnail">
-                        <img data-src="https://img.youtube.com/vi/${video.youtubeId}/hqdefault.jpg" 
-                             alt="${video.phase}"
-                             src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 320 180'%3E%3Crect fill='%23222' width='320' height='180'/%3E%3C/svg%3E">
-                        <div class="yoga-play-button"></div>
-                    </div>
+            const videoElement = document.createElement('div');
+            videoElement.className = 'yoga-video';
+            videoElement.onclick = () => openYoutubeVideo(video.youtubeId);
+            videoElement.innerHTML = `
+                <div class="yoga-thumbnail">
+                    <img data-src="https://img.youtube.com/vi/${video.youtubeId}/hqdefault.jpg" 
+                         alt="${video.phase}"
+                         src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 320 180'%3E%3Crect fill='%23222' width='320' height='180'/%3E%3C/svg%3E">
+                    <div class="yoga-play-button"></div>
                 </div>
             `;
-            yogaGallery.appendChild(section);
+            yogaGallery.appendChild(videoElement);
         });
         
         // Load images after DOM is ready
@@ -1156,22 +1228,16 @@
     });
     
     // Reset Diet Plan button functionality
-    document.getElementById('resetBtn').addEventListener('click', function() {
-        const checkboxes = document.querySelectorAll('#today .check-box');
-        checkboxes.forEach(checkbox => checkbox.checked = false);
-    });
-    
-    // Reset Tomorrow's Diet Plan button functionality
-    document.getElementById('resetTomorrowBtn').addEventListener('click', function() {
-        const checkboxes = document.querySelectorAll('#tomorrow .check-box');
-        checkboxes.forEach(checkbox => checkbox.checked = false);
-    });
+    // (Individual day reset buttons now use onclick="resetDay()" inline handlers)
     
     // Reset Medicine Plan button functionality
-    document.getElementById('resetMedicineBtn').addEventListener('click', function() {
-        const checkboxes = document.querySelectorAll('#medicine .medicine-check');
-        checkboxes.forEach(checkbox => checkbox.checked = false);
-    });
+    const resetMedicineBtn = document.getElementById('resetMedicineBtn');
+    if (resetMedicineBtn) {
+        resetMedicineBtn.addEventListener('click', function() {
+            const checkboxes = document.querySelectorAll('#medicine .medicine-check');
+            checkboxes.forEach(checkbox => checkbox.checked = false);
+        });
+    }
     
     // Recipe Modal Functions
     function showRecipe(mealName) {

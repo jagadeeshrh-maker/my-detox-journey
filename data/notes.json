@@ -1,33 +1,47 @@
 {
   "notes": {
-    "pointsToRemember": [
-      "Take a great serving of gourd vegetables in your curry those are enriched with soluble fibre and good water content too.",
-      "Use olive oil in salad dressing.",
-      "Avoid dairy products (milk, curd and paneer) or mixing fruit with dairy products (smoothies, pudding, custard etc).",
-      "Restricting non-vegetarian foods will reduce digestive load so the body can focus on eliminating toxins rather than breaking down complex proteins and fats.",
-      "Avoid all preserved/packaged/processed foods or foods with artificial colours/additives/flavours.",
-      "Use iodized salt (3g for one individual) for cooking as iodine is very important for the thyroid gland.",
-      "Be regular with foot massages before going to bed.",
-      "Digestive powder (roast and blend jeera, ajwain and fennel seeds powder together in fine powder).",
-      "Minimum try to cover 2.5 L/day of water intake."
-    ],
-    "munchingOptions": [
-      "Roasted makhana/masala makhana",
-      "Baked vegetables chips",
-      "Homemade popcorn",
-      "Puffed rajgira"
-    ],
-    "sleepRoutine": [
-      "Finish your dinner 2 hours before bed time and keep it subtle on the gut (less spicy and less oily).",
-      "Get rid of electronic devices 1 hour before bedtime.",
-      "Take a shower and do a warm oil massage to the soles of your feet.",
-      "It will be slightly time consuming to fall asleep, consistency is the key to correct your natural body clock."
-    ],
+    "shoppingGuide": {
+      "grainsPantry": [
+        "Millets: Proso Millet (for Pongal), Foxtail Millet, and Broken Jowar.",
+        "Rice: Unpolished Rice and Brown Rice.",
+        "Other Grains: Quinoa, Semolina (Rava), Broken Wheat (Daliya), and Vermicelli.",
+        "Oats: Rolled or Masala Oats.",
+        "Flours: Ragi (Finger Millet) flour and Whole Wheat flour."
+      ],
+      "proteinsDals": [
+        "Green Moong: Whole Green Moong and Moong Dal (Split).",
+        "Chickpeas: Kabuli Chana (for chat and pulav).",
+        "Lentils: Tur Dal (for porridge and daliya).",
+        "Nuts & Seeds: Almonds, Walnuts, Flax seeds, Pumpkin seeds, and Peanuts.",
+        "Snacks: Makhana (Fox nuts) and Puffed Rice."
+      ],
+      "freshVegetables": [
+        "The Superfoods: Lady Finger (Okra) — buy enough for 3–4 meals (approx. 1kg).",
+        "Gourds: Bottle Gourd (Lauki) and Ash Gourd (pantry fiber alternate).",
+        "Leafy Greens: Agathi Leaves (Hummingbird tree leaves), Methi (Fenugreek), and Dill leaves.",
+        "Daily Veggies: Carrots, French beans, Bell peppers (Capsicum), and Cucumber.",
+        "Aromatics: Tomatoes, Onions, Ginger, Garlic, and Green chillies.",
+        "Fertility Specific: Drumsticks (for soup)."
+      ],
+      "seasonalFruits": [
+        "Recommended: Papaya, Pomegranate (excellent for blood flow), Guava, or Mosambi (Sweet Lime).",
+        "Note: Since you are monitoring sugar levels, focus on low-glycemic fruits like Guava or Berries if available."
+      ],
+      "spicesHerbs": [
+        "Key Items: Cinnamon sticks (for daily use), Chasteberry (Vitex) tea/leaves, and Tulsi leaves.",
+        "Essential Seeds: Cumin seeds, Coriander seeds, Bay leaves, and Cloves.",
+        "Others: Mustard seeds, Turmeric, and Mint leaves (for pudina chutney)."
+      ],
+      "dairyFats": [
+        "Dairy: Fresh Curd/Yogurt (for Rava Idli and Buttermilk).",
+        "Cooking Fats: Cold-pressed Olive Oil or Pure Ghee (use sparingly as per your cholesterol focus)."
+      ]
+    },
     "yogaClass": [
       "Take a small meal 30 mins before the class.",
       "Do not go empty stomach as you will feel exhausted.",
       "Fix the timing and join the same session as far as possible to help with a set routine.",
-      "Try to give intervals between every 2-3 hours, avoid long sitting hours. You can make a habit of stretching your body."
+      "Try to give intervals between every 2-3 hours, avoid long sitting hours."
     ],
     "website": "www.imumz.com"
   }
